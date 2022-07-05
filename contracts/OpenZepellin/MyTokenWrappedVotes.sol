@@ -35,4 +35,13 @@ contract MyTokenWrapped is ERC20, ERC20Permit, ERC20Votes, ERC20Wrapper {
     {
         super._burn(account, amount);
     }
+
+    function decimals()
+        public
+        view
+        override(ERC20,ERC20Wrapper)
+        returns (uint8)
+    {
+        return ERC20Wrapper.decimals();
+    }
 }
