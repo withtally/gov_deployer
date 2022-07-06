@@ -1,6 +1,14 @@
 DAO Contracts Deployer
 ======================
 A tool to deploy contracts supported by Tally via CLI.
+
+For now this only deploy Compound Alpha Version.
+
+Future planning:
+- Compound Bravo.
+- OpenZepellin.
+- ERC721 deploy and mint.
+
 ----------------------
 
 ⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
@@ -81,7 +89,15 @@ node scripts/token-comp-deployer.js -t Arthur -s ART [ -o 0x_ADDRESS_OF_OWNER_OF
 You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
 
 ```bash
-node scripts/timelock-deployer.js 
+node scripts/timelock-deployer.js -t time_in_seconds_between_172800_2592000 [ -o 0xADDRESS_OF_ADMIN ]default:deployer [ --network low_case_name ]default:localhost 
+```
+
+## DAO contract based on compound alpha deployment
+
+You can find the timelock code here: [GovAlphaBased.sol](contracts/Compound/GovAlphaBased.sol)
+
+```bash
+node scripts/alpha-gov-deployer.js [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer [ --network low_case_name ]default:localhost
 ```
 
 <!-- 
