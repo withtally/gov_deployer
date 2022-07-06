@@ -117,6 +117,14 @@ node scripts/alpha-gov-deployer.js \
 
 ![Example printscreen](resources/print_screen_example.png)
 
+### Join the goerli dao rofl:
+
+```bash
+governance: 0x6aF5dDEf83425fD895Dc30B3B776Fc16f5ce19B0
+timelock:   0x88d3945052EafcA3067f501206013e56819931EB
+token:      0xC8315CC7DCDF57476a8a1D184505845d52711024
+```
+
 <!-- 
 ## OpenZepellin DAO 
 
