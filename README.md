@@ -168,5 +168,7 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 npx hardhat run --network <your-network> scripts/token-deployer.js --parameter1 one --parameter2 two --parameter3 three
+npx hardhat verify --network goerli 0x8b91856Fe8B29493e615fBCA81B94B61DFcc670C 'Hello, Hardhat!'
+
 ```
 -->

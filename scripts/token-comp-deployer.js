@@ -1,5 +1,4 @@
 // TODO Transform this in a TASK
-const { Signer } = require("ethers");
 const hre = require("hardhat");
 const yargs = require("yargs");
 
@@ -12,6 +11,7 @@ let argv = yargs.usage('$0 -t [token-name] -s [token-symbol] -o [token-owner]')
     .demandOption(['t','s'])
     .alias('t', 'token-name')
     .alias('s', 'token-symbol')
+    .alias('o', 'token-owner')
     .string('t').string('s').string('o')
     .argv
 
@@ -31,9 +31,9 @@ async function main(argv) {
 
     // INFO LOGS
     console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
+    console.log("token_owner:\x1B[33m", token_owner,"\x1B[37m\n");
     console.log("token_name:\x1B[36m", token_name,"\x1B[37m");
     console.log("token_symbol:\x1B[36m", token_symbol,"\x1B[37m");
-    console.log("token_owner:\x1B[33m", token_owner,"\x1B[37m\n");  
 
     // We get the contract to deploy
     const TokenBasedOnComp = await hre.ethers.getContractFactory("TokenBasedOnComp");
@@ -49,7 +49,12 @@ async function main(argv) {
     const lb = await provider.getBlock("latest")
 
     console.log(`Token \x1B[36m${token_symbol}\x1B[37m deployed to:\x1B[33m`, token.address,"\x1B[37m");
-    console.log(`Creation block number:\x1B[35m"`,lb.number,"\x1B[37m");
+    console.log(`Creation block number:`,lb.number);
+    console.log(`npx hardhat verify`+
+        `--network ${network}`+ 
+        `${token.address}` +
+        `${token_owner} "${token_name}" ${token_symbol}`)
+    
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 
@@ -19,6 +20,9 @@ const FUJI_URL = process.env.FUJI_URL
 // Optimism network nodes
 const OPTIMISM_URL = process.env.OPTIMISM_URL
 const OPT_KOVAN_URL = process.env.OPT_KOVAN_URL
+
+// Etherscan key
+const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -49,6 +53,9 @@ module.exports = {
         version: "0.5.17",
       },
     ],
+  },
+  etherscan:{
+    apiKey: ETHERSCAN_KEY,
   },
   private_key: PRIVATE_KEY,
   networks: {
