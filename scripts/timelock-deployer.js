@@ -20,9 +20,11 @@ async function main(argv) {
     network = argv.network ? argv.network : 'localhost'
 
     const provider_url = hre.config['networks'][network].url
+    const private_key = hre.config['networks'][network].accounts[0]
+
     // create provider from rpc url
     const provider = new hre.ethers.providers.JsonRpcProvider(provider_url);
-    const signer = new hre.ethers.Wallet(hre.config.private_key, provider);
+    const signer = new hre.ethers.Wallet(private_key, provider);
 
     // dao data
     const timelock_delay = argv.timelockDelay;
@@ -56,7 +58,7 @@ async function main(argv) {
         `${time.address} ` +
         `"${admin_address}" "${timelock_delay}"`
 
-    console.log(verify_str)
+    console.log("\n",verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
     fs.appendFile('contracts.out', `Timelock contract deployed at: ${time.address} \n` + verify_str, function (err) {

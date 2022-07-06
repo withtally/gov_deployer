@@ -21,9 +21,11 @@ async function main(argv) {
     network = argv.network ? argv.network : 'localhost'
 
     const provider_url = hre.config['networks'][network].url
+    const private_key = hre.config['networks'][network].accounts[0]
+
     // create provider from rpc url
     const provider = new hre.ethers.providers.JsonRpcProvider(provider_url);
-    const signer = new hre.ethers.Wallet(hre.config.private_key, provider);
+    const signer = new hre.ethers.Wallet(private_key, provider);
 
     // token data
     const token_name = argv.tokenName;
@@ -60,7 +62,7 @@ async function main(argv) {
         `${token.address} ` +
         `${token_owner} "${token_name}" ${token_symbol}`
 
-    console.log(verify_str)
+    console.log("\n",verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
     fs.appendFile('contracts.out', `Token contract deployed at: ${token.address} \n` + verify_str, function (err) {

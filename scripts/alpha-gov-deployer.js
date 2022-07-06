@@ -21,10 +21,11 @@ async function main(argv) {
     console.log("Alpha Compound deployer will use hardhat.ethers to deploy the Compound DAO pattern, governance contract.")
     network = argv.network ? argv.network : 'localhost'
     const provider_url = hre.config['networks'][network].url
+    const private_key = hre.config['networks'][network].accounts[0]
 
     // create provider from rpc url
     const provider = new hre.ethers.providers.JsonRpcProvider(provider_url);
-    const signer = new hre.ethers.Wallet(hre.config.private_key, provider);
+    const signer = new hre.ethers.Wallet(private_key, provider);
 
     // dao data
     const dao_name = argv.daoName;
@@ -64,7 +65,7 @@ async function main(argv) {
         `${gov.address} ` +
         `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
 
-    console.log(verify_str)
+    console.log("\n",verify_str)
     
     // save it to a file to make sure the user doesn't lose it.
     fs.appendFile('contracts.out', `Governance contract deployed at: ${time.address} \n` + verify_str, function (err) {
