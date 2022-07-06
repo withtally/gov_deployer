@@ -62,13 +62,11 @@ async function main(argv) {
         `${token.address} ` +
         `${token_owner} "${token_name}" ${token_symbol}`
 
-    console.log("\n",verify_str)
+    console.log("\n"+verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
-    fs.appendFile('contracts.out', `Token contract deployed at: ${token.address} \n` + verify_str, function (err) {
-        if (err) throw err;
-        console.log('Written to contracts.out!');
-    });
+    fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}\n${verify_str}\n\n`);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

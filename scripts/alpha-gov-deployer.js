@@ -65,13 +65,11 @@ async function main(argv) {
         `${gov.address} ` +
         `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
 
-    console.log("\n",verify_str)
-    
+    console.log("\n"+verify_str)
+
     // save it to a file to make sure the user doesn't lose it.
-    fs.appendFile('contracts.out', `Governance contract deployed at: ${time.address} \n` + verify_str, function (err) {
-        if (err) throw err;
-        console.log('Written to contracts.out!');
-    });
+    fs.appendFileSync('contracts.out', `Governance contract deployed at: ${gov.address}\n${verify_str}\n\n`);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

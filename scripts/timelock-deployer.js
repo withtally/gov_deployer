@@ -58,13 +58,10 @@ async function main(argv) {
         `${time.address} ` +
         `"${admin_address}" "${timelock_delay}"`
 
-    console.log("\n",verify_str)
+    console.log("\n"+verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
-    fs.appendFile('contracts.out', `Timelock contract deployed at: ${time.address} \n` + verify_str, function (err) {
-        if (err) throw err;
-        console.log('Written to contracts.out!');
-    });
+    fs.appendFileSync('contracts.out', `Timelock contract deployed at: ${time.address}\n${verify_str}\n\n`);
 
 }
 
