@@ -20,7 +20,7 @@ async function main(argv) {
     console.log("Alpha Compound deployer will use hardhat.ethers to deploy the Compound DAO pattern, governance contract.")
     network = argv.network ? argv.network : 'localhost'
     const provider_url = hre.config['networks'][network].url
-    
+
     // create provider from rpc url
     const provider = new hre.ethers.providers.JsonRpcProvider(provider_url);
     const signer = new hre.ethers.Wallet(hre.config.private_key, provider);
@@ -50,18 +50,20 @@ async function main(argv) {
     );
 
     await gov.deployed();
+    const lb = await provider.getBlock("latest")
 
     console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address,"\x1B[37m");
+    console.log(`Creation block number:\x1B[35m"`,lb.number,"\x1B[37m");
 }
 
 // We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main(argv)
-    .then(() => process.exit(0))
-    .catch((error) => {
-        if(error.error?.data.length)
+// and properly handle errors.        if(error.error?.data.length)
             console.error(error.code,error.error?.data);
         else
             console.log(error);
+main(argv)
+    .then(() => process.exit(0))
+    .catch((error) => {
+
         process.exit(1);
     });

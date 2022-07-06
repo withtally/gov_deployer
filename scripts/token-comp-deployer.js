@@ -46,8 +46,10 @@ async function main(argv) {
     );
 
     await token.deployed();
+    const lb = await provider.getBlock("latest")
 
     console.log(`Token \x1B[36m${token_symbol}\x1B[37m deployed to:\x1B[33m`, token.address,"\x1B[37m");
+    console.log(`Creation block number:\x1B[35m"`,lb.number,"\x1B[37m");
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -43,8 +43,11 @@ async function main(argv) {
     );
 
     await time.deployed();
+    const lb = await provider.getBlock("latest")
 
     console.log(`Timelock deployed to:\x1B[33m`, time.address,"\x1B[37m");
+    console.log(`Creation block number:\x1B[35m"`,lb.number,"\x1B[37m");
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
