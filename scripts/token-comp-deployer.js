@@ -12,6 +12,7 @@ let argv = yargs.usage('$0 -t [token-name] -s [token-symbol] -o [token-owner]')
     .demandOption(['t','s'])
     .alias('t', 'token-name')
     .alias('s', 'token-symbol')
+    .string('t').string('s').string('o')
     .argv
 
 async function main(argv) {
@@ -54,6 +55,9 @@ async function main(argv) {
 main(argv)
     .then(() => process.exit(0))
     .catch((error) => {
-        console.error(error);
+        if(error.error?.data.length)
+            console.error(error.code,error.error?.data);
+        else
+            console.log(error);
         process.exit(1);
     });

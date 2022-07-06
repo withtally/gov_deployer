@@ -2,15 +2,16 @@
 const hre = require("hardhat");
 const yargs = require("yargs");
 
-let argv = yargs.usage('$0 -n [dao-name] -c [token-address] -t [timelook-address] -o [guardian-owner]')
+let argv = yargs.usage('$0 -t [timelock-delay] -o [admin-owner]')
     .help()
     .example(
-        '$0 -n Compound DAO -c 0xabc123...token.address -t 0xabc123.timelock.address  \n-o 0xabc123...42digits...pub.key',
+        '$0 -t time_in_seconds_between_172800_2592000  \n-o 0xabc123...42digits...pub.key',
         'Deploys a timelock contract with the given delay and admin ( admin if not passed will be the deployer address.)'
     )
-    .demandOption(['t','o'])
+    .demandOption(['t'])
     .alias('t', 'timelock-delay')
     .alias('o', 'admin-address')
+    .string('t').string('o')
     .argv
 
 async function main(argv) {
@@ -51,7 +52,9 @@ async function main(argv) {
 main(argv)
     .then(() => process.exit(0))
     .catch((error) => {
-
-        console.error(error.code,error.error.data);
+        if(error.error?.data.length)
+            console.error(error.code,error.error?.data);
+        else
+            console.log(error);
         process.exit(1);
     });

@@ -86,10 +86,10 @@ You can find the token code here: [TokenBasedOnComp.sol](contracts/Compound/Toke
 
 ```bash
 node scripts/token-comp-deployer.js \
-    -t TOKEN_NAME \ # token name
-    -s TKN \ # token symbol
-    [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer \  # OPTIONAL default deployer address 
-    [ --network low_case_name ]default:localhost # OPTIONAL default: localhost 
+    -t TOKEN_NAME \
+    -s TKN \
+    [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer \
+    [ --network low_case_name ]default:localhost
 ```
 ## Timelock contract deployment
 
@@ -97,9 +97,9 @@ You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.
 
 ```bash
 node scripts/timelock-deployer.js \
-    -t time_in_seconds_between_172800_2592000 \ # time delay
-    -o 0xADDRESS_OF_ADMIN  \ # OPTIONAL default deployer address 
-    --network low_case_name # OPTIONAL default: localhost 
+    -t time_in_seconds_between_172800_2592000 \
+    -o 0xADDRESS_OF_ADMIN  \
+    --network low_case_name
 ```
 
 ## DAO contract based on compound alpha deployment
@@ -108,12 +108,14 @@ You can find the timelock code here: [GovAlphaBased.sol](contracts/Compound/GovA
 
 ```bash
 node scripts/alpha-gov-deployer.js \
-    -n DAO_NAME \ # dao name
-    -t 0x_ADDRESS_OF_TIMELOCK_CONTRACT \ # time lock contract address
-    -c 0x_ADDRESS_OF_TOKEN_CONTRACT \ # token erc20 with votes contract address
-    -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS \ # OPTIONAL default deployer address 
-    --network low_case_name  # OPTIONAL default: localhost 
+    -n DAO_NAME \
+    -t 0x_ADDRESS_OF_TIMELOCK_CONTRACT \
+    -c 0x_ADDRESS_OF_TOKEN_CONTRACT \
+    -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS \
+    --network low_case_name
 ```
+
+![Example printscreen](resources/print_screen_example.png)
 
 <!-- 
 ## OpenZepellin DAO 

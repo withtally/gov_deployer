@@ -13,13 +13,14 @@ let argv = yargs.usage('$0 -n [dao-name] -c [token-address] -t [timelook-address
     .alias('c', 'token-address')
     .alias('t', 'timelock-address')
     .alias('o', 'guardian-address')
+    .string('c').string('t').string('n').string('o')
     .argv
 
 async function main(argv) {
     console.log("Alpha Compound deployer will use hardhat.ethers to deploy the Compound DAO pattern, governance contract.")
     network = argv.network ? argv.network : 'localhost'
-
     const provider_url = hre.config['networks'][network].url
+    
     // create provider from rpc url
     const provider = new hre.ethers.providers.JsonRpcProvider(provider_url);
     const signer = new hre.ethers.Wallet(hre.config.private_key, provider);
@@ -58,7 +59,9 @@ async function main(argv) {
 main(argv)
     .then(() => process.exit(0))
     .catch((error) => {
-
-        console.error(error.code,error.error.data);
+        if(error.error?.data.length)
+            console.error(error.code,error.error?.data);
+        else
+            console.log(error);
         process.exit(1);
     });
