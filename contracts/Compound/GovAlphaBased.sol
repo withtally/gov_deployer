@@ -3,13 +3,13 @@ pragma solidity ^0.8.10;
 
 contract GovernorAlpha {
     /// @notice The name of this contract
-    string public constant name = "Compound Governor Alpha";
+    string private this_name;
 
     /// @notice The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed
-    function quorumVotes() public pure returns (uint) { return 400000e18; } // 400,000 = 4% of Comp
+    function quorumVotes() public pure returns (uint) { return 400000e18; } // 400,000 = 4% of token
 
     /// @notice The number of votes required in order for a voter to become a proposer
-    function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of Comp
+    function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of token
 
     /// @notice The maximum number of actions that can be included in a proposal
     function proposalMaxOperations() public pure returns (uint) { return 10; } // 10 actions
@@ -20,11 +20,11 @@ contract GovernorAlpha {
     /// @notice The duration of voting on a proposal, in blocks
     function votingPeriod() virtual public pure returns (uint) { return 17280; } // ~3 days in blocks (assuming 15s blocks)
 
-    /// @notice The address of the Compound Protocol Timelock
+    /// @notice The address of the Compound style Protocol Timelock
     TimelockInterface public timelock;
 
-    /// @notice The address of the Compound governance token
-    CompInterface public comp;
+    /// @notice The address of the Compound style governance token
+    TokenInterface public token;
 
     /// @notice The address of the Governor Guardian
     address public guardian;
@@ -127,14 +127,19 @@ contract GovernorAlpha {
     /// @notice An event emitted when a proposal has been executed in the Timelock
     event ProposalExecuted(uint id);
 
-    constructor(address timelock_, address comp_, address guardian_) public {
+    constructor(address timelock_, address token_, address guardian_, string memory _name) public {
+        this_name = _name; 
         timelock = TimelockInterface(timelock_);
-        comp = CompInterface(comp_); // token
+        token = TokenInterface(token_); // token
         guardian = guardian_;
     }
 
+    function name() public view returns (string memory){
+        return this_name;
+    }
+
     function propose(address[] memory targets, uint[] memory values, string[] memory signatures, bytes[] memory calldatas, string memory description) public returns (uint) {
-        require(comp.getPriorVotes(msg.sender, sub256(block.number, 1)) > proposalThreshold(), "GovernorAlpha::propose: proposer votes below proposal threshold");
+        require(token.getPriorVotes(msg.sender, sub256(block.number, 1)) > proposalThreshold(), "GovernorAlpha::propose: proposer votes below proposal threshold");
         require(targets.length == values.length && targets.length == signatures.length && targets.length == calldatas.length, "GovernorAlpha::propose: proposal function information arity mismatch");
         require(targets.length != 0, "GovernorAlpha::propose: must provide actions");
         require(targets.length <= proposalMaxOperations(), "GovernorAlpha::propose: too many actions");
@@ -205,7 +210,7 @@ contract GovernorAlpha {
         require(state != ProposalState.Executed, "GovernorAlpha::cancel: cannot cancel executed proposal");
 
         Proposal storage proposal = proposals[proposalId];
-        require(msg.sender == guardian || comp.getPriorVotes(proposal.proposer, sub256(block.number, 1)) < proposalThreshold(), "GovernorAlpha::cancel: proposer above threshold");
+        require(msg.sender == guardian || token.getPriorVotes(proposal.proposer, sub256(block.number, 1)) < proposalThreshold(), "GovernorAlpha::cancel: proposer above threshold");
 
         proposal.canceled = true;
         for (uint i = 0; i < proposal.targets.length; i++) {
@@ -251,7 +256,7 @@ contract GovernorAlpha {
     }
 
     function castVoteBySig(uint proposalId, bool support, uint8 v, bytes32 r, bytes32 s) public {
-        bytes32 domainSeparator = keccak256(abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(name)), getChainId(), address(this)));
+        bytes32 domainSeparator = keccak256(abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(this_name)), getChainId(), address(this)));
         bytes32 structHash = keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support));
         bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
         address signatory = ecrecover(digest, v, r, s);
@@ -264,7 +269,7 @@ contract GovernorAlpha {
         Proposal storage proposal = proposals[proposalId];
         Receipt storage receipt = proposal.receipts[voter];
         require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
-        uint96 votes = comp.getPriorVotes(voter, proposal.startBlock);
+        uint96 votes = token.getPriorVotes(voter, proposal.startBlock);
 
         if (support) {
             proposal.forVotes = add256(proposal.forVotes, votes);
@@ -327,6 +332,6 @@ interface TimelockInterface {
     function executeTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external payable returns (bytes memory);
 }
 
-interface CompInterface {
+interface TokenInterface {
     function getPriorVotes(address account, uint blockNumber) external view returns (uint96);
 }

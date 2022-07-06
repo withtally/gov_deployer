@@ -3,6 +3,8 @@ DAO Contracts Deployer
 A tool to deploy contracts supported by Tally via CLI.
 ----------------------
 
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+
 ### Pre-Requisites
 
 - Npm and Node.
@@ -41,27 +43,73 @@ __Following we have the block explorers and the networks that are supported curr
 - Localhost - http://localhost:8545/
 - Blockexplorer I suggest using Ganache: https://github.com/trufflesuite/ganache-ui
 
+To add funds to other accounts you can add the chain to your metamask:
+    - Name: Hardhat
+    - URL/RPC: http://121.0.0.1:8545 
+    - Chain ID: 31337
+    - Currency: ETH
+
+Run `npx hardhat node` , it will start the node and print the private_keys and pub_keys, add one of them to your metamask, so you can send funds from that account to others.
+
+If you ever reset the node, the configurations such as block nounce, and other configs in metamask have to be reset. To do so follow these steps: SETTINGS >> ADVANCED >> scroll down >> RESET ACCOUNTS (this will reset the state of them in the networks), and you can use again with localhost.
+
+------------------------------------
+
 # Deployments
 
-## OpenZepellin DAO with ERC20 Token
+Here you can see what are the commands to call to deploy and get the scenario you want.
 
-## OpenZepellin DAO with ERCO Wrapped Token
+In the commands you're going to read bellow notice that everythin in [] is optional and will have a default value.
 
-## OpenZepellin DAO with ERC721 Votes
+The network name based in `--network` option, have to follow the network name in the _`hardhat.config.js`_ file.
+
+First of all run both of this.
+```bash
+npx hardhat compile
+npx hardhat node
+```
+
+## ERC20 Token based on compound deployment
+
+You can find the token code here: [TokenBasedOnComp.sol](contracts/Compound/TokenBasedOnComp.sol)
+
+```bash
+node scripts/token-comp-deployer.js -t Arthur -s ART [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer [ --network low_case_name ]default:localhost
+```
+## Timelock contract deployment
+
+You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
+
+```bash
+node scripts/timelock-deployer.js 
+```
+
+<!-- 
+## OpenZepellin DAO 
+
+### with ERC20 Token
+
+### with ERCO Wrapped Token
+
+### with ERC721 Votes
 
 ## Compound Alpha
 
-## Compound Alpha with Wrapped Token
+### with ERC20 Token
+
+### with Wrapped Token
 
 ## Compound Bravo
 
-## Compound Bravo with Wrapped Token
+### with ERC20 Token
+
+### with Wrapped Token
 
 If possible:
 ------------
 ## Compound Alpha with ERC721 Votes
 
-## Compound Bravo with ERC721 Votes
+## Compound Bravo with ERC721 Votes 
 
 
 # Basic Sample Hardhat Project
@@ -80,3 +128,4 @@ node scripts/sample-script.js
 npx hardhat help
 npx hardhat run --network <your-network> scripts/token-deployer.js --parameter1 one --parameter2 two --parameter3 three
 ```
+-->
