@@ -1,6 +1,7 @@
 // TODO Transform this in a TASK
 const hre = require("hardhat");
 const yargs = require("yargs");
+const fs = require('fs');
 
 let argv = yargs.usage('$0 -t [timelock-delay] -o [admin-owner]')
     .help()
@@ -29,9 +30,8 @@ async function main(argv) {
 
     // INFO LOGS
     console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
+    console.log("admin address:\x1B[33m", admin_address, "\x1B[37m\n");
     console.log("timelock delay:\x1B[35m", timelock_delay, "\x1B[37m");
-    console.log("admin address:\x1B[33m", admin_address,"\x1B[37m\n");
-
 
     // We get the contract to deploy
     const Timelock = await hre.ethers.getContractFactory("Timelock");
@@ -42,11 +42,27 @@ async function main(argv) {
         timelock_delay
     );
 
+    // await deploy and get block number
     await time.deployed();
     const lb = await provider.getBlock("latest")
+    
+    // DEPLOYMENT LOGS
+    console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
+    console.log(`Creation block number:\x1B[35m"`, lb.number, "\x1B[37m");
 
-    console.log(`Timelock deployed to:\x1B[33m`, time.address,"\x1B[37m");
-    console.log(`Creation block number:\x1B[35m"`,lb.number,"\x1B[37m");
+    // verify cli command
+    const verify_str = `npx hardhat verify ` +
+        `--network ${network} ` +
+        `${time.address} ` +
+        `"${admin_address}" "${timelock_delay}"`
+
+    console.log(verify_str)
+
+    // save it to a file to make sure the user doesn't lose it.
+    fs.appendFile('contracts.out', `Timelock contract deployed at: ${time.address} \n` + verify_str, function (err) {
+        if (err) throw err;
+        console.log('Written to contracts.out!');
+    });
 
 }
 
@@ -55,8 +71,8 @@ async function main(argv) {
 main(argv)
     .then(() => process.exit(0))
     .catch((error) => {
-        if(error.error?.data.length)
-            console.error(error.code,error.error?.data);
+        if (error.error?.data.length)
+            console.error(error.code, error.error?.data);
         else
             console.log(error);
         process.exit(1);
