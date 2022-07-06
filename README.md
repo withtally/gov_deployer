@@ -1,13 +1,15 @@
+![Theme image for repository](resources/banner.png)
 DAO Contracts Deployer
 ======================
 A tool to deploy contracts supported by Tally via CLI.
 
 For now this only deploy Compound Alpha Version.
 
-Future planning:
+__Future planning:__
 - Compound Bravo.
 - OpenZepellin.
 - ERC721 deploy and mint.
+- Change from Scripts to tasks.
 
 ----------------------
 
