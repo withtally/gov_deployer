@@ -18,3 +18,4 @@ typechain
 #Hardhat files
 cache
 artifacts
+contracts.out
