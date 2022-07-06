@@ -82,14 +82,21 @@ npx hardhat node
 You can find the token code here: [TokenBasedOnComp.sol](contracts/Compound/TokenBasedOnComp.sol)
 
 ```bash
-node scripts/token-comp-deployer.js -t Arthur -s ART [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer [ --network low_case_name ]default:localhost
+node scripts/token-comp-deployer.js \
+    -t TOKEN_NAME \ # token name
+    -s TKN \ # token symbol
+    [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer \  # OPTIONAL default deployer address 
+    [ --network low_case_name ]default:localhost # OPTIONAL default: localhost 
 ```
 ## Timelock contract deployment
 
 You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
 
 ```bash
-node scripts/timelock-deployer.js -t time_in_seconds_between_172800_2592000 [ -o 0xADDRESS_OF_ADMIN ]default:deployer [ --network low_case_name ]default:localhost 
+node scripts/timelock-deployer.js \
+    -t time_in_seconds_between_172800_2592000 \ # time delay
+    -o 0xADDRESS_OF_ADMIN  \ # OPTIONAL default deployer address 
+    --network low_case_name # OPTIONAL default: localhost 
 ```
 
 ## DAO contract based on compound alpha deployment
@@ -97,7 +104,12 @@ node scripts/timelock-deployer.js -t time_in_seconds_between_172800_2592000 [ -o
 You can find the timelock code here: [GovAlphaBased.sol](contracts/Compound/GovAlphaBased.sol)
 
 ```bash
-node scripts/alpha-gov-deployer.js [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer [ --network low_case_name ]default:localhost
+node scripts/alpha-gov-deployer.js \
+    -n DAO_NAME \ # dao name
+    -t 0x_ADDRESS_OF_TIMELOCK_CONTRACT \ # time lock contract address
+    -c 0x_ADDRESS_OF_TOKEN_CONTRACT \ # token erc20 with votes contract address
+    -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS \ # OPTIONAL default deployer address 
+    --network low_case_name  # OPTIONAL default: localhost 
 ```
 
 <!-- 
