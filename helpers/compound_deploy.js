@@ -92,8 +92,8 @@ const alphaGov = async (
     return gov;
 }
 
-exports.module = {
-    erc20comp,
-    timelock,
-    alphaGov
+module.exports = {
+    erc20comp: erc20comp,
+    timelock: timelock,
+    alphaGov: alphaGov
 }
