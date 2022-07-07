@@ -1,18 +1,20 @@
-// TODO Transform this in a TASK
+// Use the task in favor of this.
+// leaving it for future reference.
+
 const hre = require("hardhat");
 const yargs = require("yargs");
 const fs = require('fs');
+const getExpectedContractAddress = require('helpers/expected_contract.js');
 
-let argv = yargs.usage('$0 -t [timelock-delay] -o [admin-owner]')
+let argv = yargs.usage('$0 -t [timelock-delay]')
     .help()
     .example(
-        '$0 -t time_in_seconds_between_172800_2592000  \n-o 0xabc123...42digits...pub.key',
+        '$0 -t time_in_seconds_between_172800_2592000 ',
         'Deploys a timelock contract with the given delay and admin ( admin if not passed will be the deployer address.)'
     )
     .demandOption(['t'])
     .alias('t', 'timelock-delay')
-    .alias('o', 'admin-address')
-    .string('t').string('o')
+    .string('t')
     .argv
 
 async function main(argv) {
@@ -28,7 +30,7 @@ async function main(argv) {
 
     // dao data
     const timelock_delay = argv.timelockDelay;
-    const admin_address = argv.adminAddress ? argv.adminAddress : signer.address;
+    const admin_address = await getExpectedContractAddress(signer,2);
 
     // INFO LOGS
     console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
@@ -51,6 +53,7 @@ async function main(argv) {
     // DEPLOYMENT LOGS
     console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
     console.log(`Creation block number:\x1B[35m"`, lb.number, "\x1B[37m");
+    console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
     // verify cli command
     const verify_str = `npx hardhat verify ` +

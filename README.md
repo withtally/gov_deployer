@@ -80,7 +80,11 @@ npx hardhat compile
 npx hardhat node
 ```
 
-## ERC20 Token based on compound deployment
+## Compound Alpha
+
+The following scripts will deploy the Compound Alpha version of the governance contracts.
+
+### ERC20 Token based on compound deployment
 
 You can find the token code here: [TokenBasedOnComp.sol](contracts/Compound/TokenBasedOnComp.sol)
 
@@ -91,7 +95,7 @@ node scripts/token-comp-deployer.js \
     [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer \
     [ --network low_case_name ]default:localhost
 ```
-## Timelock contract deployment
+### Timelock contract deployment
 
 You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
 
@@ -102,7 +106,10 @@ node scripts/timelock-deployer.js \
     --network low_case_name
 ```
 
-## DAO contract based on compound alpha deployment
+You should deploy the governance contract right after deploying the Timelock one.
+
+
+### DAO contract based on compound alpha deployment
 
 You can find the timelock code here: [GovAlphaBased.sol](contracts/Compound/GovAlphaBased.sol)
 
@@ -117,15 +124,13 @@ node scripts/alpha-gov-deployer.js \
 
 ![Example printscreen](resources/print_screen_example.png)
 
-### Join the goerli dao rofl:
+#### Join the goerli dao rofl:
 
 governance: [0x6aF5dDEf83425fD895Dc30B3B776Fc16f5ce19B0](https://goerli.etherscan.io/address/0x6af5ddef83425fd895dc30b3b776fc16f5ce19b0)
 
 timelock:   [0x88d3945052EafcA3067f501206013e56819931EB](https://goerli.etherscan.io/address/0x88d3945052eafca3067f501206013e56819931eb)
 
 token:      [0xC8315CC7DCDF57476a8a1D184505845d52711024](https://goerli.etherscan.io/address/0xc8315cc7dcdf57476a8a1d184505845d52711024)
-
-
 
 
 <!-- 

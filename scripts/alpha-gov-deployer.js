@@ -1,4 +1,6 @@
-// TODO Transform this in a TASK
+// Use tasks in favor of this.
+// leaving it for future reference.
+
 const hre = require("hardhat");
 const yargs = require("yargs");
 const fs = require('fs');

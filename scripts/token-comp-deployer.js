@@ -1,4 +1,6 @@
-// TODO Transform this in a TASK
+// Use the task in favor of this.
+// leaving it for future reference.
+
 const hre = require("hardhat");
 const yargs = require("yargs");
 const fs = require('fs');
@@ -51,7 +53,7 @@ async function main(argv) {
     // await deploy and get block number
     await token.deployed();
     const lb = await provider.getBlock("latest")
-    
+
     // DEPLOYMENT LOGS
     console.log(`Token \x1B[36m${token_symbol}\x1B[37m deployed to:\x1B[33m`, token.address, "\x1B[37m");
     console.log(`Creation block number:`, lb.number);
@@ -62,7 +64,7 @@ async function main(argv) {
         `${token.address} ` +
         `${token_owner} "${token_name}" ${token_symbol}`
 
-    console.log("\n"+verify_str)
+    console.log("\n" + verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
     fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}\n${verify_str}\n\n`);
