@@ -1,7 +1,7 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import { ethers } from "ethers";
+const { SignerWithAddress} = require("@nomiclabs/hardhat-ethers/signers");
+require("ethers");
 
-export const getExpectedContractAddress = async (deployer: SignerWithAddress, actionsAfter: number) => {
+const getExpectedContractAddress = async (deployer, actionsAfter) => {
   
   const adminAddressTransactionCount = await deployer.getTransactionCount();
 
@@ -12,3 +12,5 @@ export const getExpectedContractAddress = async (deployer: SignerWithAddress, ac
 
   return expectedContractAddress;
 };
+
+module.exports.getExpectedContractAddress = getExpectedContractAddress;

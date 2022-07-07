@@ -9,7 +9,7 @@
  * @param {*} signer , ethereum address who will sign
  * @returns 
  */
-export const erc20comp = async (
+const erc20comp = async (
     token_owner,
     token_name,
     token_symbol,
@@ -39,7 +39,7 @@ export const erc20comp = async (
  * @param {*} signer , ethereum address who will sign
  * @returns 
  */
-export const timelock = async (
+const timelock = async (
     admin_address,
     timelock_delay,
     signer
@@ -69,7 +69,7 @@ export const timelock = async (
  * @param {*} signer , ethereum address who will sign
  * @returns 
  */
-export const alphaGov = async (
+const alphaGov = async (
     timelock_address,
     token_address,
     guardian_address,
@@ -90,4 +90,10 @@ export const alphaGov = async (
     // await deploy and get block number
     await gov.deployed();
     return gov;
+}
+
+exports.module = {
+    erc20comp,
+    timelock,
+    alphaGov
 }

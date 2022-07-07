@@ -3,7 +3,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 // requiring tasks.
-require("./tasks/compound_alpha");
+require("./tasks/compound");
 
 /* ========== DATA FROM .env ===========*/
 // Private key

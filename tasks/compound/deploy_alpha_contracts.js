@@ -1,4 +1,4 @@
-const { alphaGov, erc20comp, timelock } = require('./helpers');
+const { alphaGov, erc20comp, timelock } = require('../../helpers/compound_deploy');
 
 require('fs');
 

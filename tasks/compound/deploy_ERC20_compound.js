@@ -1,3 +1,4 @@
+const { erc20comp } = require('../../helpers/compound_deploy');
 require('fs');
 
 task('comp_token', "Deploys a Compound's style token contract")

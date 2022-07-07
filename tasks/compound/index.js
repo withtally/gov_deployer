@@ -6,5 +6,4 @@ module.exports = {
     ERC20,
     Timelock,
     AlphaGovernance,
-    
 }

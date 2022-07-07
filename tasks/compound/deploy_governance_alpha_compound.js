@@ -1,3 +1,4 @@
+const { alphaGov } = require('../../helpers/compound_deploy');
 require('fs');
 
 task('alpha_governance', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
