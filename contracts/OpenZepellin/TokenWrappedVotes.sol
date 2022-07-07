@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Wrapper.sol";
 
-contract MyTokenWrapped is ERC20, ERC20Permit, ERC20Votes, ERC20Wrapper {
+contract TokenWrappedVotes is ERC20, ERC20Permit, ERC20Votes, ERC20Wrapper {
     constructor(IERC20 wrappedToken)
         ERC20("MyToken", "MTK")
         ERC20Permit("MyToken")

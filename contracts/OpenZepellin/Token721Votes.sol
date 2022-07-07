@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/draft-ERC721Votes.sol";
 
-contract MyToken721Votes is ERC721, ERC721URIStorage, EIP712, ERC721Votes {
+contract Token721Votes is ERC721, ERC721URIStorage, EIP712, ERC721Votes {
     constructor()
         ERC721("MyToken721Votes", "TKN")
         EIP712("MyToken721Votes", "1")

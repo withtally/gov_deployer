@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
-contract MyToken is ERC20, Ownable, ERC20Permit, ERC20Votes {
+contract TokenVotesMintable is ERC20, Ownable, ERC20Permit, ERC20Votes {
     constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {}
 
     function mint(address to, uint256 amount) public onlyOwner {
