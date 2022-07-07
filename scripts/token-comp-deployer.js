@@ -41,7 +41,7 @@ async function main(argv) {
     console.log("token_symbol:\x1B[36m", token_symbol, "\x1B[37m");
 
     // We get the contract to deploy
-    const TokenBasedOnComp = await hre.ethers.getContractFactory("TokenBasedOnComp");
+    const TokenBasedOnComp = await hre.ethers.getContractFactory("ERC20Comp");
 
     // constructor(address account, string memory _name, string memory _symbol)
     const token = await TokenBasedOnComp.connect(signer).deploy(

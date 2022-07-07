@@ -16,10 +16,10 @@ const erc20comp = async (
     signer
 ) =>{
     // We get the contract to deploy
-    const TokenBasedOnComp = await hre.ethers.getContractFactory("TokenBasedOnComp");
+    const ERC20Comp = await hre.ethers.getContractFactory("ERC20Comp");
 
     // constructor(address account, string memory _name, string memory _symbol)
-    const token = await TokenBasedOnComp.connect(signer).deploy(
+    const token = await ERC20Comp.connect(signer).deploy(
         token_owner,
         token_name,
         token_symbol,
@@ -77,7 +77,7 @@ const alphaGov = async (
     signer
 ) => {
     // We get the contract to deploy
-    const GovernorAlpha = await hre.ethers.getContractFactory("GovAlphaBased");
+    const GovernorAlpha = await hre.ethers.getContractFactory("AlphaGovComp");
 
     // constructor(address timelock_, address token_, address guardian_, string memory _name) public
     const gov = await GovernorAlpha.connect(signer).deploy(
@@ -93,7 +93,7 @@ const alphaGov = async (
 }
 
 module.exports = {
-    erc20comp: erc20comp,
-    timelock: timelock,
-    alphaGov: alphaGov
+    erc20comp,
+    timelock,
+    alphaGov
 }

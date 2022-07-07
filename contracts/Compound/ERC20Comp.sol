@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity ^0.8.10;
 
-contract TokenBasedOnComp {
+// ERC20 Token in the pattern designed by Compound.
+contract ERC20Comp {
     /// @notice EIP-20 token name for this token, this is a work around to be a public function..
     string private this_name;
 

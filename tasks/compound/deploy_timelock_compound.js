@@ -1,5 +1,5 @@
 const { timelock } = require('../../helpers/compound_deploy');
-require('fs');
+const fs = require('fs');
 
 task('comp_timelock', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
     .addParam("delay", "The delay time in seconds between 172800 and 2592000.")

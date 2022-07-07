@@ -1,5 +1,5 @@
 const { erc20comp } = require('../../helpers/compound_deploy');
-require('fs');
+const fs = require('fs');
 
 task('comp_token', "Deploys a Compound's style token contract")
     .addParam("name", "The token name. eg: Ethereum")
