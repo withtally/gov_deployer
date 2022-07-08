@@ -1,3 +1,24 @@
+////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                    //
+//      "C~                                                                           //
+//  ^'1XUpkhhQ_.                                                                      //
+//  ]?{/xXXJZphhc|,                                                                   //
+//  ]]]?]]]nzXXJbhhhw"        lqhhhhhhhhhhhhm              nhhh:  uhhu                //
+//  I]?]]]]]](|rXXC0whqu      !qhhhhhhhhhhhhm              nhhh:  uhhu                //
+//    ^_?]]]]?]]]1uXXLkh           Jhhh:                   nhhh:  uhhu                //
+//      ']]]]]]]]]]cXLkh           Jhhh:     ltczzzn[[zzx  xhhh:  uhhu xzz1'    ^zzz  //
+//      ']]?]]]]]]?cX(.(           Jhhh:    :hhhhhhhhhhhm  nhhh:  uhhu  hhh:    hhh:  //
+//      ']]]]?rXXY('               Jhhh:    hhhr    :hhhm  nhhh:  uhhu  ^Uhh/ :whh[   //
+//      ']]]]]rXUhh:               Jhhh:   zhhh:     [hhm  nhhh:  uhhu   lQhkruhhu    //
+//      ']]?]]rXUhh:               Jhhh:    hhh|    ]hhhm  nhhh:  uhhu    lqhhhhw:    //
+//      ']?]]]rXUhh:               Jhhh:    ihhhqZZwhhhhm  nhhh:  uhhu     mhhhhm     //
+//      '_]]]?rXn {^               /ccc^      {cQhmz <ccr  }ccc^  {cc{      hhh_      //
+//        '`l]:'I                                                         .mhh/.      //
+//                                                                        +phU,       //
+//                                                                                    //
+////////////////////////////////////////////////////////////////////////////////////////
+
+//----------
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();

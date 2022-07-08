@@ -92,8 +92,43 @@ const alphaGov = async (
     return gov;
 }
 
+/**
+ * bravoGov will deploy a timelock with parameters passed in.
+ * and it is using a contract you can find in ./contracts/compound
+ * 
+ * @param {*} timelock_address , timelock address
+ * @param {*} token_address , token contract address
+ * @param {*} guardian_address , address of the holder of guardian role
+ * @param {*} dao_name , the DAO governance name
+ * @param {*} signer , ethereum address who will sign
+ * @returns 
+ */
+ const bravoGov = async (
+    timelock_address,
+    token_address,
+    guardian_address,
+    dao_name,
+    signer
+) => {
+    // We get the contract to deploy
+    const GovernorBravo = await hre.ethers.getContractFactory("AlphaGovComp");
+
+    // constructor(address timelock_, address token_, address guardian_, string memory _name) public
+    const gov = await GovernorBravo.connect(signer).deploy(
+        timelock_address,
+        token_address,
+        guardian_address,
+        dao_name
+    );
+
+    // await deploy and get block number
+    await gov.deployed();
+    return gov;
+}
+
 module.exports = {
     erc20comp,
     timelock,
-    alphaGov
+    alphaGov,
+    bravoGov
 }
