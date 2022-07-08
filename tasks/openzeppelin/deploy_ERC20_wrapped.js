@@ -1,12 +1,12 @@
-const { erc20comp } = require('../../helpers/compound_deploy');
+const { erc20Wrapper } = require('../../helpers/openzeppelin_deploy');
 const fs = require('fs');
 
-task('comp_token', "Deploys a Compound's style token contract")
+task('wrapped_token', "Deploys a OpenZeppelin token wrapper contract")
     .addParam("name", "The token name. eg: Ethereum")
     .addParam("symbol", "The token symbol. eg: ETH")
-    .addOptionalParam("owner", "The account's address of the token owner")
+    .addParam("address", "The original token address.")
     .setAction(async (taskArgs, hre) => {
-        console.log("Deploying a Compound style ERC20 token contract");
+        console.log("Deploying a OZ style token wrapper contract");
 
         const signer = await hre.ethers.getSigner()
 
@@ -19,16 +19,16 @@ task('comp_token', "Deploys a Compound's style token contract")
         // token data
         const token_name = taskArgs.name;
         const token_symbol = taskArgs.symbol;
-        const token_owner = taskArgs.owner ? taskArgs.owner : signer.address;
+        const token_address = taskArgs.address;
 
         // INFO LOGS
-        console.log("token_owner:\x1B[33m", token_owner, "\x1B[37m\n");
+        console.log("token_address:\x1B[33m", token_address, "\x1B[37m\n");
         console.log("token_name:\x1B[36m", token_name, "\x1B[37m");
         console.log("token_symbol:\x1B[36m", token_symbol, "\x1B[37m");
-        
+
         //  DEPLOY TOKEN
-        const token = await erc20comp(
-            token_owner,
+        const token = await erc20Wrapper(
+            token_address,
             token_name,
             token_symbol,
             signer
@@ -44,7 +44,7 @@ task('comp_token', "Deploys a Compound's style token contract")
         const verify_str = `npx hardhat verify ` +
             `--network ${network} ` +
             `${token.address} ` +
-            `${token_owner} "${token_name}" ${token_symbol}`
+            `${token_address} "${token_name}" ${token_symbol}`
 
         console.log("\n" + verify_str)
 

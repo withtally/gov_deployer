@@ -23,7 +23,7 @@ task('alpha_dao', "Deploys a timelock contract with the given delay. You have to
         // token data
         const token_name = taskArgs.name;
         const token_symbol = taskArgs.symbol;
-        const token_owner = taskArgs.owner ? argv.owner : signer.address;
+        const token_owner = taskArgs.owner ? taskArgs.owner : signer.address;
 
         // INFO LOGS
         console.log("token_owner:\x1B[33m", token_owner, "\x1B[37m\n");

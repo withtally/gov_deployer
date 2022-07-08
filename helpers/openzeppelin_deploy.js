@@ -65,7 +65,6 @@ const erc20Votes = async (
     return token
 }
 
-
 /**
  * erc721votes will deploy the ERC721 token contract (NFT) from openzeppelin.
  * 
@@ -122,7 +121,6 @@ const erc20Wrapper = async (
     await token.deployed();
     return token
 }
-
 
 /**
  * ozGovernor  will deploy a governor contract in the standard proposed by OpenZeppelin.

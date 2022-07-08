@@ -21,7 +21,7 @@ task('alpha_governance', "Deploys a timelock contract with the given delay. You 
         const dao_name = taskArgs.name;
         const token_address = taskArgs.token;
         const timelock_address = taskArgs.timelock;
-        const guardian_address = taskArgs.guardian ? argv.guardian : signer.address;
+        const guardian_address = taskArgs.guardian ? taskArgs.guardian : signer.address;
 
         // INFO LOGS
         console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
