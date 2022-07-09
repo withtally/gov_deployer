@@ -36,7 +36,7 @@ task('bravo_governance', "Deploys a Bravo governance contract.")
         const verify_str = `npx hardhat verify ` +
             `--network ${network} ` +
             `${gov.address} ` +
-            `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
+            `"${dao_name}"`
 
         console.log("\n" + verify_str)
 

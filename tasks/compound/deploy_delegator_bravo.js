@@ -21,9 +21,10 @@ task('bravo_delegator', "Deploys a Bravo governance contract.")
         );
 
         // CONSTANTS
+        // Avoiding magic numbers
         const DEFAULT_VOTING_PERIOD = 10;
         const DEFAULT_VOTING_DELAY = 3600 * 24 * 5; // 5 Days
-        const DEFAULT_PROPOSAL_THRESHOLD = 3600 * 24 * 5; // 5 Days
+        const DEFAULT_PROPOSAL_THRESHOLD = 3600 * 24 * 10; // 10 Days
 
         // DAO DATA
         const timelock_address = taskArgs.timelock;
