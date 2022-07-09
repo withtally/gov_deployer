@@ -1,7 +1,7 @@
 const { alphaGov, erc20comp, timelock } = require('../../helpers/compound_deploy');
 const fs = require('fs');
 
-task('alpha_dao', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
+task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
     .addParam("dao", "The name of the DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")

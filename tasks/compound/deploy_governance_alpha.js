@@ -1,7 +1,7 @@
 const { alphaGov } = require('../../helpers/compound_deploy');
 const fs = require('fs');
 
-task('alpha_governance', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
+task('alpha_governance', "Deploys a Alpha governance contract. Deploy after timelock.")
     .addParam("name", "The name of the DAO.")
     .addParam("token", "The delay time in seconds between 172800 and 2592000.")
     .addParam("timelock", "The address of the timelock contract.")

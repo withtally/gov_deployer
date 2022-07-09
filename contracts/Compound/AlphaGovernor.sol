@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity ^0.8.10;
 
-contract AlphaGovComp {
+contract AlphaGovernor {
     /// @notice The name of this contract
     string private this_name;
 

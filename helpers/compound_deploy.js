@@ -77,7 +77,7 @@ const alphaGov = async (
     signer
 ) => {
     // We get the contract to deploy
-    const GovernorAlpha = await hre.ethers.getContractFactory("AlphaGovComp");
+    const GovernorAlpha = await hre.ethers.getContractFactory("AlphaGovernor");
 
     // constructor(address timelock_, address token_, address guardian_, string memory _name) public
     const gov = await GovernorAlpha.connect(signer).deploy(
@@ -93,31 +93,22 @@ const alphaGov = async (
 }
 
 /**
- * bravoGov will deploy a timelock with parameters passed in.
- * and it is using a contract you can find in ./contracts/compound
+ * bravoGov will deploy the governance contract.
+ * It needs to be delegated by a delegator contract.'
  * 
- * @param {*} timelock_address , timelock address
- * @param {*} token_address , token contract address
- * @param {*} guardian_address , address of the holder of guardian role
  * @param {*} dao_name , the DAO governance name
  * @param {*} signer , ethereum address who will sign
  * @returns 
  */
- const bravoGov = async (
-    timelock_address,
-    token_address,
-    guardian_address,
+const bravoGov = async (
     dao_name,
     signer
 ) => {
     // We get the contract to deploy
-    const GovernorBravo = await hre.ethers.getContractFactory("AlphaGovComp");
+    const BravoGovernance = await hre.ethers.getContractFactory("BravoGovernorDelegate");
 
-    // constructor(address timelock_, address token_, address guardian_, string memory _name) public
-    const gov = await GovernorBravo.connect(signer).deploy(
-        timelock_address,
-        token_address,
-        guardian_address,
+    // constructor 
+    const gov = await BravoGovernance.connect(signer).deploy(
         dao_name
     );
 
@@ -126,9 +117,54 @@ const alphaGov = async (
     return gov;
 }
 
+/**
+ * bravoDelegator will deploy the delegator contract, who delegates to another bravo contract.
+ * 
+ * @param {*} timelock_address 
+ * @param {*} token_address 
+ * @param {*} admin_address 
+ * @param {*} implementation_address 
+ * @param {*} votingPeriod 
+ * @param {*} votingDelay 
+ * @param {*} proposalThreshold 
+ * @param {*} signer 
+ * @returns 
+ */
+const bravoDelegator = async (
+    timelock_address,
+    token_address,
+    admin_address,
+    implementation_address, // delegate ?
+    voting_period,
+    voting_delay,
+    proposal_threshold,
+    signer
+) => {
+    // We get the contract to deploy
+    const DelegatorBravo = await hre.ethers.getContractFactory("GovernorBravoDelegator");
+
+    // constructor( address timelock_, address token_, address admin_, address implementation_,
+    // uint votingPeriod_, uint votingDelay_, uint proposalThreshold_) public 
+    const gov = await DelegatorBravo.connect(signer).deploy(
+        timelock_address,
+        token_address,
+        admin_address,
+        implementation_address, // delegate ?
+        voting_period,
+        voting_delay,
+        proposal_threshold
+    );
+
+    // await deploy and get block number
+    await gov.deployed();
+    return gov;
+}
+
+
 module.exports = {
     erc20comp,
     timelock,
     alphaGov,
-    bravoGov
+    bravoGov,
+    bravoDelegator
 }

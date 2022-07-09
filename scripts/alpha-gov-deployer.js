@@ -43,7 +43,7 @@ async function main(argv) {
     console.log("dao_name:\x1B[36m", dao_name, "\x1B[37m\n");
 
     // We get the contract to deploy
-    const GovernorAlpha = await hre.ethers.getContractFactory("AlphaGovComp");
+    const GovernorAlpha = await hre.ethers.getContractFactory("AlphaGovernor");
 
     // constructor(address timelock_, address token_, address guardian_, string memory _name) public
     const gov = await GovernorAlpha.connect(signer).deploy(
