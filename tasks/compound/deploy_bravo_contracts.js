@@ -46,7 +46,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // verify cli
         const verify_str_token = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${token.address} ` +
             `${token_owner} "${token_name}" ${token_symbol}`
         console.log("\n" + verify_str_token)
@@ -78,7 +78,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // verify cli command
         const verify_str_timelock = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${time.address} ` +
             `"${admin_address}" "${timelock_delay}"`
 
@@ -117,7 +117,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // verify cli
         const verify_str_governance = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${gov.address} ` +
             `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
 

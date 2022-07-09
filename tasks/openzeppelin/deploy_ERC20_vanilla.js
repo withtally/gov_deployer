@@ -54,14 +54,14 @@ task('vanilla_token', "Deploys a Vanilla OpenZeppelin token contract")
 
         // verify cli
         const verify_str = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${token.address} ` +
             `${token_name}  ${token_symbol} "${token_decimals}" ${token_totalSupply} ${token_owner}`
 
         console.log("\n" + verify_str)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}\n${verify_str}\n\n`);
+        fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}  - ${network.address}\n${verify_str}\n\n`);
 
     });
 

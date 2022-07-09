@@ -2,7 +2,7 @@ const { alphaGov, erc20comp, timelock } = require('../../helpers/compound_deploy
 const fs = require('fs');
 
 task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
-    .addParam("dao", "The name of the DAO.")
+    .addParam("name", "The name of the DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")
     .addParam("delay", "The delay time, for the timelock, in seconds between 172800 and 2592000.")
@@ -21,7 +21,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
 
         ///////////////// TOKEN DEPLOYMENT ///////////////////////////////
         // token data
-        const token_name = taskArgs.name;
+        const token_name = taskArgs.token;
         const token_symbol = taskArgs.symbol;
         const token_owner = taskArgs.owner ? taskArgs.owner : signer.address;
 
@@ -46,7 +46,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
 
         // verify cli
         const verify_str_token = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${token.address} ` +
             `${token_owner} "${token_name}" ${token_symbol}`
         console.log("\n" + verify_str_token)
@@ -78,7 +78,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
 
         // verify cli command
         const verify_str_timelock = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${time.address} ` +
             `"${admin_address}" "${timelock_delay}"`
 
@@ -117,7 +117,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
 
         // verify cli
         const verify_str_governance = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${gov.address} ` +
             `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
 

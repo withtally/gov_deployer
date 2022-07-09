@@ -34,14 +34,14 @@ task('bravo_governance', "Deploys a Bravo governance contract.")
 
         // verify cli
         const verify_str = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${gov.address} ` +
             `"${dao_name}"`
 
         console.log("\n" + verify_str)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Governance contract deployed at: ${gov.address}\n${verify_str}\n\n`);
+        fs.appendFileSync('contracts.out', `Governance contract deployed at: ${gov.address}  - ${network.address}\n${verify_str}\n\n`);
 
     });
 

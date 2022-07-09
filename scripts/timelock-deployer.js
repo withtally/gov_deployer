@@ -57,14 +57,14 @@ async function main(argv) {
 
     // verify cli command
     const verify_str = `npx hardhat verify ` +
-        `--network ${network} ` +
+        `--network ${network.name} ` +
         `${time.address} ` +
         `"${admin_address}" "${timelock_delay}"`
 
     console.log("\n"+verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
-    fs.appendFileSync('contracts.out', `Timelock contract deployed at: ${time.address}\n${verify_str}\n\n`);
+    fs.appendFileSync('contracts.out', `Timelock contract deployed at: ${time.address}  - ${network.address}\n${verify_str}\n\n`);
 
 }
 

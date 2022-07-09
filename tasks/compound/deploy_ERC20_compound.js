@@ -12,8 +12,8 @@ task('comp_token', "Deploys a Compound's style token contract")
 
         // HARDHAT LOG
         console.log(
-            `network:\x1B[36m${hre.network.name}\x1B[37m\n`,
-            `signer:\x1B[33m${signer.address}\x1B[37m\n`
+            `network:\x1B[36m${hre.network.name}\x1B[37m`,
+            `\nsigner:\x1B[33m${signer.address}\x1B[37m\n`
         );
 
         // token data
@@ -42,14 +42,14 @@ task('comp_token', "Deploys a Compound's style token contract")
 
         // verify cli
         const verify_str = `npx hardhat verify ` +
-            `--network ${network} ` +
+            `--network ${network.name} ` +
             `${token.address} ` +
             `${token_owner} "${token_name}" ${token_symbol}`
-
+        
         console.log("\n" + verify_str)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}\n${verify_str}\n\n`);
+        fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}  - ${network.address}\n${verify_str}\n\n`);
 
     });
 

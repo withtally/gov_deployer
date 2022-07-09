@@ -68,70 +68,102 @@ If you ever reset the node, the configurations such as block nounce, and other c
 
 # Deployments
 
-Here you can see what are the commands to call to deploy and get the scenario you want.
+In this section we are going to cover all the tasks and deployment possible to be made with gov_deployer.
 
-In the commands you're going to read bellow notice that everythin in [] is optional and will have a default value.
+We are going to list commands to call and their variables to deploy.
+
+By doing so you will now what to call in order to get the scenario and governance that you want.
 
 The network name based in `--network` option, have to follow the network name in the _`hardhat.config.js`_ file.
+
+In all tasks the variable `--network lower_case_name` will be optional with default:localhost
 
 First of all run both of this.
 ```bash
 npx hardhat compile
-npx hardhat node
+npx hardhat node # if you're running it locally
 ```
 
-## Compound Alpha
+## Compound
 
 The following scripts will deploy the Compound Alpha version of the governance contracts.
 
-### ERC20 Token based on compound deployment
+#### Alpha Deployment
 
-You can find the token code here: [TokenBasedOnComp.sol](contracts/Compound/TokenBasedOnComp.sol)
+Deploy in one go all the contracts to create an Alpha Compound style governance.
 
 ```bash
-node scripts/token-comp-deployer.js \
-    -t TOKEN_NAME \
-    -s TKN \
-    [ -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS ]default:deployer \
-    [ --network low_case_name ]default:localhost
+npx hardhat alpha_dao \
+    --name DAO_NAME \
+    --token TOKEN_NAME \
+    --symbol TKN \
+    --delay time_in_seconds_between_172800_2592000
+    --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
+    --guardian 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS # Optional default as the deployer address.
+```
+
+### ERC20 Token
+
+You can find the token contract code here: [ERC20Comp.sol](contracts/Compound/ERC20Comp.sol)
+
+```bash
+npx hardhat comp_token \
+    --name TOKEN_NAME \
+    --symbol TKN \
+    --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
 ```
 ### Timelock contract deployment
 
-You can find the timelock code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
+You can find the timelock contract code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
 
 ```bash
-node scripts/timelock-deployer.js \
-    -t time_in_seconds_between_172800_2592000 \
-    -o 0xADDRESS_OF_ADMIN  \
-    --network low_case_name
+npx hardhat comp_timelock \
+    --delay time_in_seconds_between_172800_2592000
 ```
 
 You should deploy the governance contract right after deploying the Timelock one.
 
+### Alpha Governance
 
-### DAO contract based on compound alpha deployment
-
-You can find the timelock code here: [GovAlphaBased.sol](contracts/Compound/GovAlphaBased.sol)
+You can find the dao contract code here: [AlphaGovernor.sol](contracts/Compound/AlphaGovernor.sol)
 
 ```bash
-node scripts/alpha-gov-deployer.js \
-    -n DAO_NAME \
-    -t 0x_ADDRESS_OF_TIMELOCK_CONTRACT \
-    -c 0x_ADDRESS_OF_TOKEN_CONTRACT \
-    -o 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS \
-    --network low_case_name
+npx hardhat alpha_governance \
+    --name DAO_NAME \
+    --timelock 0x_ADDRESS_OF_TIMELOCK_CONTRACT \
+    --token 0x_ADDRESS_OF_TOKEN_CONTRACT \
+    --guardian 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS # Optional default as the deployer.
 ```
 
+### Bravo Governance (Delegate)
+
+You can find the dao contract code here: [BravoGovernor.sol](contracts/Compound/BravoGovernor.sol)
+
+```bash
+npx hardhat bravo_governance \
+    --name DAO_NAME
+```
+
+### Bravo Delegator
+
+When the bravo delegator is deployed the governance is initialized. This is the last contract you deploy in the Bravo schema.
+
+```bash
+npx hardhat bravo_delegator \
+    --timelock 0x_ADDRESS_OF_TIMELOCK_CONTRACT \
+    --token 0x_ADDRESS_OF_TOKEN_CONTRACT \
+    --admin 0x_ADDRESS_OF_ADMIN \ # Optional
+    --governance 0xADDRESS_OF_BRAVO_GOVERNOR_CONTRACT \
+    --delay time_in_seconds \ # optional
+    --threshold time_in_seconds \ #optional
+    --period time_in_seconds \ #optional
+```
+
+## OpenZepellin
+
+## Nouns, NFTDao
+
 ![Example printscreen](resources/print_screen_example.png)
-
-#### Join the goerli dao rofl:
-
-governance: [0x6aF5dDEf83425fD895Dc30B3B776Fc16f5ce19B0](https://goerli.etherscan.io/address/0x6af5ddef83425fd895dc30b3b776fc16f5ce19b0)
-
-timelock:   [0x88d3945052EafcA3067f501206013e56819931EB](https://goerli.etherscan.io/address/0x88d3945052eafca3067f501206013e56819931eb)
-
-token:      [0xC8315CC7DCDF57476a8a1D184505845d52711024](https://goerli.etherscan.io/address/0xc8315cc7dcdf57476a8a1d184505845d52711024)
-
 
 <!-- 
 ## OpenZepellin DAO 
