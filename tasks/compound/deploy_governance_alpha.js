@@ -38,7 +38,7 @@ task('alpha_governance', "Deploys a Alpha governance contract. Deploy after time
             signer
         );
 
-        const lb = await provider.getBlock("latest")
+        const lb = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address, "\x1B[37m");

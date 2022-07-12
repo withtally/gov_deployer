@@ -1,4 +1,5 @@
 const { alphaGov, erc20comp, timelock } = require('../../helpers/compound_deploy');
+const { getExpectedContractAddress } = require('../../helpers/expected_contract');
 const fs = require('fs');
 
 task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
@@ -69,7 +70,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
             signer
         );
 
-        const timelockBlock = await provider.getBlock("latest")
+        const timelockBlock = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
@@ -109,7 +110,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
             signer
         );
 
-        const govBlock = await provider.getBlock("latest")
+        const govBlock = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address, "\x1B[37m");

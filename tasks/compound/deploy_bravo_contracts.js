@@ -69,7 +69,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
             signer
         );
 
-        const timelockBlock = await provider.getBlock("latest")
+        const timelockBlock = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
@@ -109,7 +109,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
             signer
         );
 
-        const govBlock = await provider.getBlock("latest")
+        const govBlock = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address, "\x1B[37m");

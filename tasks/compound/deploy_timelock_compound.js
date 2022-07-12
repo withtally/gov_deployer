@@ -30,7 +30,7 @@ task('comp_timelock', "Deploys a timelock contract with the given delay. You hav
             signer
         );
         
-        const lb = await provider.getBlock("latest")
+        const lb = await hre.ethers.provider.getBlock("latest")
 
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
