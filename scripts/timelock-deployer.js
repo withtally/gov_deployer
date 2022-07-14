@@ -52,7 +52,7 @@ async function main(argv) {
     
     // DEPLOYMENT LOGS
     console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
-    console.log(`Creation block number:\x1B[35m"`, lb.number, "\x1B[37m");
+    console.log(`Creation block number:\x1B[35m`, lb.number, "\x1B[37m");
     console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
     // verify cli command

@@ -42,7 +42,7 @@ task('alpha_governance', "Deploys a Alpha governance contract. Deploy after time
 
         // DEPLOYMENT LOGS
         console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address, "\x1B[37m");
-        console.log(`Creation block number:\x1B[35m"`, lb.number, "\x1B[37m");
+        console.log(`Creation block number:\x1B[35m`, lb.number, "\x1B[37m");
 
         // verify cli
         const verify_str = `npx hardhat verify ` +

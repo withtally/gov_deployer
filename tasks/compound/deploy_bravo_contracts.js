@@ -73,7 +73,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
-        console.log(`Creation block number:\x1B[35m"`, timelockBlock.number, "\x1B[37m");
+        console.log(`Creation block number:\x1B[35m`, timelockBlock.number, "\x1B[37m");
         console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
         // verify cli command
@@ -113,7 +113,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // DEPLOYMENT LOGS
         console.log(`Dao: \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, gov.address, "\x1B[37m");
-        console.log(`Creation block number:\x1B[35m"`, govBlock.number, "\x1B[37m");
+        console.log(`Creation block number:\x1B[35m`, govBlock.number, "\x1B[37m");
 
         // verify cli
         const verify_str_governance = `npx hardhat verify ` +
