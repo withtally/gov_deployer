@@ -10,8 +10,8 @@ task('comp_timelock', "Deploys a timelock contract with the given delay. You hav
 
         // HARDHAT LOG
         console.log(
-            `network:\x1B[36m${hre.network.name}\x1B[37m\n`,
-            `signer:\x1B[33m${signer.address}\x1B[37m\n`
+            `network:\x1B[36m${hre.network.name}\x1B[37m`,
+            `\nsigner:\x1B[33m${signer.address}\x1B[37m\n`
         );
 
         // TIMELOCK DATA

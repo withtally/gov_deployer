@@ -11,8 +11,8 @@ task('nft_votes', "Deploys a OpenZeppelin voting nftoken contract")
 
         // HARDHAT LOG
         console.log(
-            `network:\x1B[36m${hre.network.name}\x1B[37m\n`,
-            `signer:\x1B[33m${signer.address}\x1B[37m\n`
+            `network:\x1B[36m${hre.network.name}\x1B[37m`,
+            `\nsigner:\x1B[33m${signer.address}\x1B[37m\n`
         );
 
         // token data
