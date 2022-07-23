@@ -1,7 +1,9 @@
 ![Theme image for repository](resources/banner.png)
 DAO Contracts Deployer
 ======================
-A tool to deploy governance related contracts supported by Tally via CLI.
+A tool to deploy governance and related contracts supported by Tally via CLI. 
+
+All the contracts disclosed here are opinated versions of it. And you can always redesign and modified if they stick to the overall pattern.
 
 ----------------
 # Gov Deployer
@@ -14,7 +16,11 @@ To skip reading too much and go directly to the commands [click here](#deploymen
 
 ### Which Governance should I use ?
 
-The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Look up this comparison chart bellow, to see which one is the best for you. 
+Are you still unsure on what governance to use, let's us help you!
+
+The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract.
+
+Look up this comparison chart bellow, to see which one is the best for you.
 
 | α Governor Alpha                                                          	| β Governor Bravo                                                        	| ℥ Governor OpenZepellin                                                 	|
 |---------------------------------------------------------------------------	|-------------------------------------------------------------------------	|-------------------------------------------------------------------------	|
