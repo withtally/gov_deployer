@@ -232,10 +232,11 @@ npx hardhat bravo_delegator \
 __Future planning:__
 - OpenZepellin.
 - ERC721 deploy and mint.
+- Add a pluggin usage to add it to the Tally website.
 
 ----------------------
 
-⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+This repository is incomplete as I'm still ⚠️⚠️ __WORKING ON IT__ ⚠️⚠️. If you have any suggestions or tips in improving it please mail me: arthur@withtally.com
 
 ![Example printscreen](resources/print_screen_example.png)
 
