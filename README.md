@@ -3,19 +3,56 @@ DAO Contracts Deployer
 ======================
 A tool to deploy governance related contracts supported by Tally via CLI.
 
-For now this only deploy Compound Alpha Version.
+----------------
+# Gov Deployer
+## About
 
-__Future planning:__
-- Compound Bravo.
-- OpenZepellin.
-- ERC721 deploy and mint.
-- Change from Scripts to hardhat Tasks.
+Gov deployer is dev tool created by developers in tally, in special [Arthur](github.com/afa7789).
+It's main purpose is to deploy the contracts that tally support in their products with a single line of command.
 
-----------------------
+To skip reading too much and go directly to the commands [click here](#deployments) and to go to the [table of content click here](#table-of-content).
 
-⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+### Which Governance should I use ?
 
-To skip reading too much click [here](#deployments)
+The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Look up this comparison chart bellow, to see which one is the best for you. 
+
+| α Governor Alpha                                                          	| β Governor Bravo                                                        	| ℥ Governor OpenZepellin                                                 	|
+|---------------------------------------------------------------------------	|-------------------------------------------------------------------------	|-------------------------------------------------------------------------	|
+| 🛑 Non-upgradable contract.                                                	| 🛠️ Built in upgradability.                                               	| 🧰 Built in upgradability and more customization.                        	|
+| 🔀 Parameter changes require contract migration.                           	| 🔁 Parameter changes uses static contract address, no migrations needed. 	| 🔁 Parameter changes uses static contract address, no migrations needed. 	|
+| ☑️ Yes and No vote options.                                                	| 🗳️ Yes, no and abstain vote options.                                     	| 🗳️ Yes, no and abstain vote options.                                     	|
+| ❓ No additional context recorded with vote.                               	| 📝 option to add text comment to on-chain vote.                          	| 📝 option to add text comment to on-chain vote.                          	|
+| ♻️ Each upgrade resets proposal number schema                              	| 📈 Continuous proposal numbers regardless of upgrades                    	| 📈 Continuous proposal numbers regardless of upgrades                    	|
+| 📍 Well supported, was the first governance version. Easier deploy system. 	| 🔩 Have support too since it is an upgrade to the Alpha version.         	| 🔮 Widely Supported, as a contract from open zeppelin.                   	|
+| ❌ Does not support off-chain proposal signatures.                         	| ❌ Does not support off-chain proposal signatures.                       	| ⛓️ Supports Off-chain proposal signatures.                               	|
+
+### Table of content
+
+- [Gov Deployer](#gov-deployer)
+  - [About](#about)
+    - [Which Governance should I use ?](#which-governance-should-i-use)
+    - [Table of Content](#table-of-content)
+    - [Pre-Requisites](#pre-requisites)
+    - [Installation](#installation)
+    - [Networks that Tally support](#networks-that-tally-support)
+      - [Ethereum](#ethereum)
+      - [Polygon](#polygon)
+      - [Avalanche](#avalanche)
+      - [Optimism](#optimism)
+      - [Arbitrum](#arbitrum)
+      - [Localhost](#localhost)
+- [Deployments](#deployments)
+  - [Compound](#compound)
+    - [Alpha Deployment](#alpha-deployment)
+      - [ERC20 Token](#erc20-token)
+      - [Timelock contract deployment](#timelock-contract-deployment)
+      - [Alpha Governance](#alpha-governance)
+    - [Bravo Deployment](#bravo-deployment)
+      - [Bravo Governance (Delegate)](#bravo-governance-delegate)
+      - [Bravo Delegator](#bravo-delegator)
+  - [OpenZepellin](#openzepellin)
+  - [Nouns, NFTDao](#nouns-nftdao)
+
 ### Pre-Requisites
 
 - Npm and Node.
@@ -49,6 +86,11 @@ __Following we have the block explorers and the networks that are supported curr
 #### Optimism
 - Optimism - https://optimistic.etherscan.io/
 - Optimism Kovan - https://kovan-optimistic.etherscan.io/
+- Optimism Goerli - * missing etherscan explorer *
+
+#### Arbitrum
+- Arbitrum One - https://arbiscan.io/
+- Arbitrum Rinkeby - https://testnet.arbiscan.io/
 
 #### Localhost
 - Localhost - http://localhost:8545/
@@ -86,9 +128,13 @@ npx hardhat node # if you're running it locally
 
 ## Compound
 
-The following scripts will deploy the Compound Alpha version of the governance contracts.
+The following section contains the scripts which will deploy the Compound Alpha version of the governance contracts.
 
-#### Alpha Deployment
+Compound is DAO that created two patterns of Governance contracts Alpha and Bravo.
+
+The compound contracts were tinkered with the proposal of allowing us to set their names and symbols during deployment time. So if you need to change some of the variables it's recommended to change in contract and run `npx hardhat compile` to update the contract.
+
+### Alpha Deployment
 
 Deploy in one go all the contracts to create an Alpha Compound style governance.
 
@@ -102,7 +148,7 @@ npx hardhat alpha_dao \
     --guardian 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS # Optional default as the deployer address.
 ```
 
-### ERC20 Token
+#### ERC20 Token
 
 You can find the token contract code here: [ERC20Comp.sol](contracts/Compound/ERC20Comp.sol)
 
@@ -112,7 +158,7 @@ npx hardhat comp_token \
     --symbol TKN \
     --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
 ```
-### Timelock contract deployment
+#### Timelock contract deployment
 
 You can find the timelock contract code here: [TimeLock.sol](contracts/Compound/Timelock.sol)
 
@@ -123,7 +169,7 @@ npx hardhat comp_timelock \
 
 You should deploy the governance contract right after deploying the Timelock one.
 
-### Alpha Governance
+#### Alpha Governance
 
 You can find the dao contract code here: [AlphaGovernor.sol](contracts/Compound/AlphaGovernor.sol)
 
@@ -134,19 +180,34 @@ npx hardhat alpha_governance \
     --token 0x_ADDRESS_OF_TOKEN_CONTRACT \
     --guardian 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS # Optional default as the deployer.
 ```
+------------------------------------
+### Bravo Deployment
 
-### Bravo Governance (Delegate)
+Deploy in a single command all the contracts needed to create an Bravo Compound style governance.
 
-You can find the dao contract code here: [BravoGovernor.sol](contracts/Compound/BravoGovernor.sol)
+```bash
+npx hardhat bravo_dao \
+    --name DAO_NAME \
+    --token TOKEN_NAME \
+    --symbol TKN \
+    --delay time_in_seconds_between_172800_2592000
+    --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
+    --guardian 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS # Optional default as the deployer address.
+```
+
+#### Bravo Governance (Delegate)
+
+You can find the dao contract code here: [BravoGovernorDelegate.sol](contracts/Compound/BravoGovernorDelegate.sol)
 
 ```bash
 npx hardhat bravo_governance \
     --name DAO_NAME
 ```
 
-### Bravo Delegator
+#### Bravo Delegator
 
-When the bravo delegator is deployed the governance is initialized. This is the last contract you deploy in the Bravo schema.
+When the bravo delegator is deployed the governance is initialized. This is the last contract you deploy in the Bravo schema. You can find the dao contract code here: [GovernorBravoDelegator.sol](contracts/Compound/GovernorBravoDelegator.sol)
+
 
 ```bash
 npx hardhat bravo_delegator \
@@ -158,12 +219,26 @@ npx hardhat bravo_delegator \
     --threshold time_in_seconds \ #optional
     --period time_in_seconds \ #optional
 ```
-
+------------------------------------
 ## OpenZepellin
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
 
 ## Nouns, NFTDao
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+
+# Token/NFT Distribution
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+
+__Future planning:__
+- OpenZepellin.
+- ERC721 deploy and mint.
+
+----------------------
+
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
 
 ![Example printscreen](resources/print_screen_example.png)
+
 
 <!-- 
 ## OpenZepellin DAO 

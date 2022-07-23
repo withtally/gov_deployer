@@ -133,7 +133,7 @@ const bravoGov = async (
 const bravoDelegator = async (
     timelock_address,
     token_address,
-    admin_address,
+    guardian_address, // is the admin in the contract.
     implementation_address, // delegate ?
     voting_period,
     voting_delay,
@@ -148,7 +148,7 @@ const bravoDelegator = async (
     const gov = await DelegatorBravo.connect(signer).deploy(
         timelock_address,
         token_address,
-        admin_address,
+        guardian_address,
         implementation_address, // delegate ?
         voting_period,
         voting_delay,

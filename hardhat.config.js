@@ -77,7 +77,7 @@ module.exports = {
       },
     ],
   },
-  etherscan:{
+  etherscan: {
     apiKey: ETHERSCAN_KEY,
   },
   networks: {
@@ -90,7 +90,7 @@ module.exports = {
       accounts: [PRIVATE_KEY],
     },
     // ETH - networks
-    // Ethereum config
+    // Ethereum mainnet config
     ethereum: {
       url: ETHEREUM_URL,
       accounts: [PRIVATE_KEY],
@@ -110,19 +110,19 @@ module.exports = {
       url: KOVAN_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Polygon (Matic)
+    // Polygon (Matic) - networks
     // Polygon mainnet config
     polygon: {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Mumbai
+    // Mumbai testnet config
     mumbai: {
       url: MUMBAI_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Avalanche mainnet
-    // Avalanche config
+    // Avalanche - networks
+    // Avalanche mainnet config
     avalanche: {
       url: AVALANCHE_URL,
       accounts: [PRIVATE_KEY],
@@ -132,7 +132,7 @@ module.exports = {
       url: FUJI_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Optimism
+    // Optimism - networks
     // Optimism mainnet config
     optimism: {
       url: OPTIMISM_URL,
@@ -141,6 +141,22 @@ module.exports = {
     // Optimism Kovan testnet config
     optimism_kovan: {
       url: OPT_KOVAN_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Optimism Goerli testnet config
+    optimism_goerli: {
+      url: OPT_GOERLI_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Arbitrum - networks
+    // Arbitrum One mainnet config
+    arbitrum: {
+      url: ARBITRUM_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Arbitrum Rinkeby testnet config
+    arbitrum_rinkeby: {
+      url: ARBITRUM_RIN_URL,
       accounts: [PRIVATE_KEY],
     }
   }

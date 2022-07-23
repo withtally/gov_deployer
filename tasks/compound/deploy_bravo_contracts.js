@@ -1,15 +1,18 @@
-const { alphaGov, erc20comp, timelock } = require('../../helpers/compound_deploy');
+const { alphaGov, erc20comp, timelock, bravoGov, bravoDelegator } = require('../../helpers/compound_deploy');
 const fs = require('fs');
 
 task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
     .addParam("dao", "The name of the DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")
-    .addParam("delay", "The delay time, for the timelock, in seconds between 172800 and 2592000.")
+    .addParam("timelock", "The timelock delay time, in seconds between 172800 and 2592000.")
+    .addParam("period","The voting period, which is ")
+    .addParam("delay","The voting delay, which is ")
+    .addParam("threshold","The proposal threshold.")
     .addOptionalParam("owner", "The token owner address. If not passed, the deployer address will be used.")
     .addOptionalParam("guardian", "The DAO guardian address. If not passed, the deployer address will be used.")
     .setAction(async (taskArgs, hre) => {
-        console.log("Deploying a Compound Alpha Governance contract");
+        console.log("Deploying a Compound Bravo Governance contract");
 
         const signer = await hre.ethers.getSigner()
 
@@ -86,25 +89,16 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `Timelock contract deployed at: ${time.address}\n${verify_str_timelock}\n\n`);
-
+        
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
         // GOVERNANCE DATA
         const dao_name = taskArgs.name;
-        const token_address = token.address;
-        const timelock_address = time.address;
-        const guardian_address = taskArgs.guardian ? argv.guardian : signer.address;
 
         // GOVERNANCE DATA LOGS
-        console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
-        console.log("token_address:\x1B[33m", token_address, "\x1B[37m");
-        console.log("guardian_address:\x1B[33m", guardian_address, "\x1B[37m");
         console.log("dao_name:\x1B[36m", dao_name, "\x1B[37m\n");
 
-        //  DEPLOY ALPHA GOVERNANCE
-        const gov = await alphaGov(
-            timelock_address,
-            token_address,
-            guardian_address,
+        //  DEPLOY BRAVO GOVERNANCE
+        const gov = await bravoGov(
             dao_name,
             signer
         );
@@ -119,11 +113,51 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         const verify_str_governance = `npx hardhat verify ` +
             `--network ${network.name} ` +
             `${gov.address} ` +
-            `"${timelock_address}" "${token_address}" "${guardian_address}" "${dao_name}"`
+            `"${dao_name}"`
 
         console.log("\n" + verify_str_governance)
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `Governance contract deployed at: ${gov.address}\n${verify_str_governance}\n\n`);
+        
+        ///////////////// DELEGATOR DEPLOYMENT ///////////////////////////
+        // DELEGATOR DATA
+        const timelock_address = time.address;
+        const token_address = token.address;
+        const implementation_address = gov.address;
+        const guardian_address = taskArgs.guardian ? taskArgs.guardian : signer.address;
+        const voting_delay = taskArgs.delay;
+        const voting_period = taskArgs.period;
+        const proposal_threshold = taskArgs.threshold;
 
+        // DEPLOY BRAVO GOVERNANCE
+        const del = await bravoDelegator(
+            timelock_address,
+            token_address,
+            guardian_address,
+            implementation_address, // delegate ?
+            voting_period,
+            voting_delay,
+            proposal_threshold,
+            signer
+        );
+
+        const delBlock = await hre.ethers.provider.getBlock("latest")
+
+        // DEPLOYMENT LOGS
+        console.log(`Delegator for \x1B[36m${dao_name}\x1B[37m deployed to:\x1B[33m`, del.address, "\x1B[37m");
+        console.log(`Creation block number:\x1B[35m`, delBlock.number, "\x1B[37m");
+
+        // verify cli
+        const verify_str_delegator = `npx hardhat verify ` +
+            `--network ${network.name} ` +
+            `${gov.address} ` +
+            `"${timelock_address}" "${token_address}" "${guardian_address}" "${implementation_address}" `+
+            `"${voting_period}" "${voting_delay}" "${proposal_threshold}"`
+
+        console.log("\n" + verify_str_delegator)
+
+        // save it to a file to make sure the user doesn't lose it.
+        fs.appendFileSync('contracts.out', `Delegator contract deployed at: ${del.address}\n${verify_str_delegator}\n\n`);
+        
     });
