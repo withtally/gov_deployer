@@ -18,7 +18,7 @@ To skip reading too much and go directly to the commands [click here](#deploymen
 
 Are you still unsure on what governance to use, let's us help you!
 
-The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract.
+The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Tally recommends you to use Openzeppelin contract, because it will be the one with more support and less chance of being deprecated, and it is too the contracts with more longevity, maintenance and support. 
 
 Look up this comparison chart bellow, to see which one is the best for you.
 
@@ -29,7 +29,7 @@ Look up this comparison chart bellow, to see which one is the best for you.
 | ☑️ Yes and No vote options.                                                	| 🗳️ Yes, no and abstain vote options.                                     	| 🗳️ Yes, no and abstain vote options.                                     	|
 | ❓ No additional context recorded with vote.                               	| 📝 option to add text comment to on-chain vote.                          	| 📝 option to add text comment to on-chain vote.                          	|
 | ♻️ Each upgrade resets proposal number schema                              	| 📈 Continuous proposal numbers regardless of upgrades                    	| 📈 Continuous proposal numbers regardless of upgrades                    	|
-| 📍 Well supported, was the first governance version. Easier deploy system. 	| 🔩 Have support too since it is an upgrade to the Alpha version.         	| 🔮 Widely Supported, as a contract from open zeppelin.                   	|
+| 📍 Supported, was the first governance version. Easier deploy system.  	| 🔩 Supported too since it is an upgrade to the Alpha version.         	| 🔮 Widely Supported, as a contract from open zeppelin. With more features and upgrades.                   	|
 | ❌ Does not support off-chain proposal signatures.                         	| ❌ Does not support off-chain proposal signatures.                       	| ⛓️ Supports Off-chain proposal signatures.                               	|
 
 ### Table of content

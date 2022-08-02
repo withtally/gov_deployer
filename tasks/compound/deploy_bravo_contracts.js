@@ -6,9 +6,9 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")
     .addParam("timelock", "The timelock delay time, in seconds between 172800 and 2592000.")
-    .addParam("period","The voting period, which is ")
-    .addParam("delay","The voting delay, which is ")
-    .addParam("threshold","The proposal threshold.")
+    .addParam("period","The voting period, which is the number of blocks, from 5760 to 80640. (24 hour to 2 weeks)")
+    .addParam("delay","The voting delay, which is the number of blocks, from 1 to 40320. (15 seconds to 1 week)")
+    .addParam("threshold","The proposal threshold. Min ammount of Tokens 1000e18 to 100000e18")
     .addOptionalParam("owner", "The token owner address. If not passed, the deployer address will be used.")
     .addOptionalParam("guardian", "The DAO guardian address. If not passed, the deployer address will be used.")
     .setAction(async (taskArgs, hre) => {
@@ -54,7 +54,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
             `${token_owner} "${token_name}" ${token_symbol}`
         console.log("\n" + verify_str_token)
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}\n${verify_str_token}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}\n${verify_str_token}\n\n`);
 
         ///////////////// TIMELOCK DEPLOYMENT ///////////////////////////
         // TIMELOCK DATA
@@ -88,7 +88,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         console.log("\n" + verify_str_timelock)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Timelock contract deployed at: ${time.address}\n${verify_str_timelock}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nTimelock contract deployed at: ${time.address}\n${verify_str_timelock}\n\n`);
         
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
         // GOVERNANCE DATA
@@ -118,7 +118,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         console.log("\n" + verify_str_governance)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Governance contract deployed at: ${gov.address}\n${verify_str_governance}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}\n${verify_str_governance}\n\n`);
         
         ///////////////// DELEGATOR DEPLOYMENT ///////////////////////////
         // DELEGATOR DATA
@@ -158,6 +158,6 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         console.log("\n" + verify_str_delegator)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `Delegator contract deployed at: ${del.address}\n${verify_str_delegator}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nDelegator contract deployed at: ${del.address}\n${verify_str_delegator}\n\n`);
         
     });

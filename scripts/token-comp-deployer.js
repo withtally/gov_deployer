@@ -67,7 +67,7 @@ async function main(argv) {
     console.log("\n" + verify_str)
 
     // save it to a file to make sure the user doesn't lose it.
-    fs.appendFileSync('contracts.out', `Token contract deployed at: ${token.address}  - ${network.address}\n${verify_str}\n\n`);
+    fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}  - ${network.address}\n${verify_str}\n\n`);
 
 }
 
