@@ -43,6 +43,10 @@ const FUJI_URL = process.env.FUJI_URL
 // Optimism network nodes
 const OPTIMISM_URL = process.env.OPTIMISM_URL
 const OPT_KOVAN_URL = process.env.OPT_KOVAN_URL
+const OPT_GOERLI_URL = process.env.OPT_GOERLI_URL
+// Arbitrum network nodes
+const ARBITRUM_URL = process.env.ARBITRUM_URL
+const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
 
 // Etherscan key
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
