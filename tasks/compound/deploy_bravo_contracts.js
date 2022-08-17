@@ -153,7 +153,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         // verify cli
         const verify_str_delegator = `npx hardhat verify ` +
             `--network ${network.name} ` +
-            `${gov.address} ` +
+            `${del.address} ` +
             `"${timelock_address}" "${token_address}" "${guardian_address}" "${implementation_address}" `+
             `"${voting_period}" "${voting_delay}" "${proposal_threshold}"`
 
