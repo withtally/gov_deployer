@@ -114,7 +114,7 @@ module.exports = {
         avalancheFujiTestnet: SNOWTRACE_KEY,
         optimisticEthereum: OPT_ETHERSCAN_KEY,
         optimisticKovan: OPT_ETHERSCAN_KEY,
-        arbitrum: ARBISCAN_KEY,
+        arbitrumOne: ARBISCAN_KEY,
         arbitrumTestnet: ARBISCAN_KEY,
     }
   },
