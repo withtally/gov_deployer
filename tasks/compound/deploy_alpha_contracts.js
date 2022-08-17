@@ -57,7 +57,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
         ///////////////// TIMELOCK DEPLOYMENT ///////////////////////////
         // TIMELOCK DATA
         const timelock_delay = taskArgs.delay;
-        const admin_address = await getExpectedContractAddress(signer, 2);
+        const admin_address = await getExpectedContractAddress(signer, 1);
 
         // INFO LOGS
         console.log("admin address:\x1B[33m", admin_address, "\x1B[37m\n");

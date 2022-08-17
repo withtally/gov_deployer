@@ -191,6 +191,8 @@ npx hardhat alpha_governance \
 
 Deploy in a single command all the contracts needed to create an Bravo Compound style governance.
 
+To deploy bravo you need to deploy token, timelock, delegate and after it the delegator. Delegator is the main governance contract and delegate is the governance contract used as a proxy to the delegator.
+
 ```bash
 npx hardhat bravo_dao \
     --name DAO_NAME \
@@ -203,6 +205,8 @@ npx hardhat bravo_dao \
 
 #### Bravo Governance (Delegate)
 
+Delegate is the logic for the governance contract. It is used by delegator with the proxy approach.
+
 You can find the dao contract code here: [BravoGovernorDelegate.sol](contracts/Compound/BravoGovernorDelegate.sol)
 
 ```bash
@@ -211,6 +215,8 @@ npx hardhat bravo_governance \
 ```
 
 #### Bravo Delegator
+
+Bravo delegator is the main contract which points to the other contracts and should be the admin of the timelock.
 
 When the bravo delegator is deployed the governance is initialized. This is the last contract you deploy in the Bravo schema. You can find the dao contract code here: [GovernorBravoDelegator.sol](contracts/Compound/GovernorBravoDelegator.sol)
 

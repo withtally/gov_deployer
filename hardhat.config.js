@@ -53,7 +53,7 @@ const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
 const POLYGONSCAN_KEY = process.env.POLYGONSCAN_KEY
 const SNOWTRACE_KEY = process.env.SNOWTRACE_KEY
 const OPT_ETHERSCAN_KEY = process.env.OPT_ETHERSCAN_KEY
-const ARBISCAN_KEY = provess.env.ARBISCAN_KEY
+const ARBISCAN_KEY = process.env.ARBISCAN_KEY
 
 /**
  * @type import('hardhat/config').HardhatUserConfig

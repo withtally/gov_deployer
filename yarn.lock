@@ -661,7 +661,7 @@
     "@types/sinon-chai" "^3.2.3"
     "@types/web3" "1.0.19"
 
-"@openzeppelin/contracts@^4.7.0":
+"@openzeppelin/contracts@4.7.0":
   "integrity" "sha512-52Qb+A1DdOss8QvJrijYYPSf32GUg2pGaG/yCxtaA3cu4jduouTdg4XZSMLW9op54m1jH7J8hoajhHKOPsoJFw=="
   "resolved" "https://registry.npmjs.org/@openzeppelin/contracts/-/contracts-4.7.0.tgz"
   "version" "4.7.0"
