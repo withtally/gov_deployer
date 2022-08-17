@@ -128,7 +128,9 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         const guardian_address = taskArgs.guardian ? taskArgs.guardian : signer.address;
         const voting_delay =  taskArgs.delay ? taskArgs.delay :  12; // 12 blocks = 180segs +/- 3 minutos
         const voting_period = taskArgs.period ? taskArgs.period : 11520; // 48 houres
-        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 1000e18;
+        const proposal_threshold = hre.ethers.BigNumber.from( (
+            taskArgs.threshold ? taskArgs.threshold : 100000e18 // 100,000 = 1% of token
+        ).toLocaleString('fullwide', {useGrouping:false}) );
 
         // DEPLOY BRAVO GOVERNANCE
         const del = await bravoDelegator(

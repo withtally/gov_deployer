@@ -32,6 +32,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
         console.log("token_symbol:\x1B[36m", token_symbol, "\x1B[37m");
         
         //  DEPLOY TOKEN
+        // 10000000e18; // 10 million tokens
         const token = await erc20comp(
             token_owner,
             token_name,
