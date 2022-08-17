@@ -101,21 +101,24 @@ module.exports = {
 
   },
   etherscan: {
+    // To get the correct names needed run: 
+    //  npx hardhat verify --list-networks
     apiKey: {
-        ethereum: ETHERSCAN_KEY,
+        mainnet: ETHERSCAN_KEY,
         goerli: ETHERSCAN_KEY,
         rinkeby: ETHERSCAN_KEY,
         kovan: ETHERSCAN_KEY,
         polygon: POLYGONSCAN_KEY,
-        mumbai: POLYGONSCAN_KEY,
+        polygonMumbai: POLYGONSCAN_KEY,
         avalanche: SNOWTRACE_KEY,
-        fuji: SNOWTRACE_KEY,
-        optimism: OPT_ETHERSCAN_KEY,
-        optimism_kovan: OPT_ETHERSCAN_KEY,
+        avalancheFujiTestnet: SNOWTRACE_KEY,
+        optimisticEthereum: OPT_ETHERSCAN_KEY,
+        optimisticKovan: OPT_ETHERSCAN_KEY,
         arbitrum: ARBISCAN_KEY,
-        arbitrum_rinkeby: ARBISCAN_KEY,
+        arbitrumTestnet: ARBISCAN_KEY,
     }
   },
+
   networks: {
     localhost: {
       url: "http://localhost:8545",
