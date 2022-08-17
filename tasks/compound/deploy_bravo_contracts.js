@@ -1,14 +1,15 @@
-const { alphaGov, erc20comp, timelock, bravoGov, bravoDelegator } = require('../../helpers/compound_deploy');
+const { erc20comp, timelock, bravoGov, bravoDelegator } = require('../../helpers/compound_deploy');
+const { getExpectedContractAddress } = require('../../helpers/expected_contract');
 const fs = require('fs');
 
 task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
     .addParam("dao", "The name of the DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")
-    .addParam("timelock", "The timelock delay time, in seconds between 172800 and 2592000.")
-    .addParam("period","The voting period, which is the number of blocks, from 5760 to 80640. (24 hour to 2 weeks)")
-    .addParam("delay","The voting delay, which is the number of blocks, from 1 to 40320. (15 seconds to 1 week)")
-    .addParam("threshold","The proposal threshold. Min ammount of Tokens 1000e18 to 100000e18")
+    .addOptionalParam("timelock", "The timelock delay time, in seconds between 172800 and 2592000.")
+    .addOptionalParam("period","The voting period, which is the number of blocks, from 5760 to 80640. (24 hour to 2 weeks)")
+    .addOptionalParam("delay","The voting delay, which is the number of blocks, from 1 to 40320. (15 seconds to 1 week)")
+    .addOptionalParam("threshold","The proposal threshold. Min ammount of Tokens 1000e18 to 100000e18")
     .addOptionalParam("owner", "The token owner address. If not passed, the deployer address will be used.")
     .addOptionalParam("guardian", "The DAO guardian address. If not passed, the deployer address will be used.")
     .setAction(async (taskArgs, hre) => {
@@ -24,7 +25,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         ///////////////// TOKEN DEPLOYMENT ///////////////////////////////
         // token data
-        const token_name = taskArgs.name;
+        const token_name = taskArgs.token;
         const token_symbol = taskArgs.symbol;
         const token_owner = taskArgs.owner ? taskArgs.owner : signer.address;
 
@@ -58,7 +59,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
 
         ///////////////// TIMELOCK DEPLOYMENT ///////////////////////////
         // TIMELOCK DATA
-        const timelock_delay = taskArgs.delay;
+        const timelock_delay = taskArgs.timelock ? taskArgs.timelock : 172800;
         const admin_address = await getExpectedContractAddress(signer, 2);
 
         // INFO LOGS
@@ -77,7 +78,6 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
         console.log(`Creation block number:\x1B[35m`, timelockBlock.number, "\x1B[37m");
-        console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
         // verify cli command
         const verify_str_timelock = `npx hardhat verify ` +
@@ -92,7 +92,7 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
         // GOVERNANCE DATA
-        const dao_name = taskArgs.name;
+        const dao_name = taskArgs.dao;
 
         // GOVERNANCE DATA LOGS
         console.log("dao_name:\x1B[36m", dao_name, "\x1B[37m\n");
@@ -126,9 +126,9 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
         const token_address = token.address;
         const implementation_address = gov.address;
         const guardian_address = taskArgs.guardian ? taskArgs.guardian : signer.address;
-        const voting_delay = taskArgs.delay;
-        const voting_period = taskArgs.period;
-        const proposal_threshold = taskArgs.threshold;
+        const voting_delay =  taskArgs.delay ? taskArgs.delay :  12; // 12 blocks = 180segs +/- 3 minutos
+        const voting_period = taskArgs.period ? taskArgs.period : 11520; // 48 houres
+        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 1000e18;
 
         // DEPLOY BRAVO GOVERNANCE
         const del = await bravoDelegator(

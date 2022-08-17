@@ -75,7 +75,6 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
         // DEPLOYMENT LOGS
         console.log(`Timelock deployed to:\x1B[33m`, time.address, "\x1B[37m");
         console.log(`Creation block number:\x1B[35m`, timelockBlock.number, "\x1B[37m");
-        console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
         // verify cli command
         const verify_str_timelock = `npx hardhat verify ` +

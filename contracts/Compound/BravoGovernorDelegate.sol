@@ -3,34 +3,34 @@ pragma solidity ^0.8.10;
 
 import "./GovernorBravoInterfaces.sol";
 
-contract BravoGovDelegate is GovernorBravoDelegateStorageV2, GovernorBravoEvents {
+contract BravoGovernorDelegate is GovernorBravoDelegateStorageV2, GovernorBravoEvents {
 
     /// @notice The name of this contract
     string private this_name;
 
-    /// @notice The minimum setable proposal threshold
-    uint public constant MIN_PROPOSAL_THRESHOLD = 1000e18; // 1,000 Comp
+    /// @notice The minimum setable proposal threshold 1,000 Comp
+    uint public constant MIN_PROPOSAL_THRESHOLD = 1000e18; 
 
-    /// @notice The maximum setable proposal threshold
-    uint public constant MAX_PROPOSAL_THRESHOLD = 100000e18; //100,000 Comp
+    /// @notice The maximum setable proposal threshold 100,000 Comp
+    uint public constant MAX_PROPOSAL_THRESHOLD = 100000e18;
 
-    /// @notice The minimum setable voting period
-    uint public constant MIN_VOTING_PERIOD = 5760; // About 24 hours
+    /// @notice The minimum setable voting period. About 24 hours
+    uint public constant MIN_VOTING_PERIOD = 5760; 
 
-    /// @notice The max setable voting period
-    uint public constant MAX_VOTING_PERIOD = 80640; // About 2 weeks
+    /// @notice The max setable voting period. About 2 weeks
+    uint public constant MAX_VOTING_PERIOD = 80640;
 
     /// @notice The min setable voting delay
     uint public constant MIN_VOTING_DELAY = 1;
 
-    /// @notice The max setable voting delay
-    uint public constant MAX_VOTING_DELAY = 40320; // About 1 week
+    /// @notice The max setable voting delay. About 1 week
+    uint public constant MAX_VOTING_DELAY = 40320;
 
-    /// @notice The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed
-    uint public constant quorumVotes = 400000e18; // 400,000 = 4% of Comp
+    /// @notice The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed. About  400,000 = 4% of Comp
+    uint public constant quorumVotes = 400000e18;
 
-    /// @notice The maximum number of actions that can be included in a proposal
-    uint public constant proposalMaxOperations = 10; // 10 actions
+    /// @notice The maximum number of actions that can be included in a proposal. 10 actions
+    uint public constant proposalMaxOperations = 10; 
 
     /// @notice The EIP-712 typehash for the contract's domain
     bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
@@ -38,14 +38,9 @@ contract BravoGovDelegate is GovernorBravoDelegateStorageV2, GovernorBravoEvents
     /// @notice The EIP-712 typehash for the ballot struct used by the contract
     bytes32 public constant BALLOT_TYPEHASH = keccak256("Ballot(uint256 proposalId,uint8 support)");
 
-    constructor(string memory _name){
-        this_name = _name; 
-    }
+    constructor(string memory _name){ this_name = _name;}
 
-    function name() public view returns (string memory){
-        return this_name;
-    }
-
+    function name() public view returns (string memory){ return this_name; }
 
     /**
       * @notice Used to initialize the contract during delegator constructor
