@@ -1,7 +1,7 @@
 const { bravoDelegator } = require('../../helpers/compound_deploy');
 const fs = require('fs');
 
-task('bravo_delegator', "Deploys a Bravo governance contract.")
+task('bravo_delegator', "Deploys a Bravo governance, delegator contract. Which is the main one.")
     .addParam("token", "The delay time in seconds between 172800 and 2592000.")
     .addParam("timelock", "The address of the timelock contract.")
     .addOptionalParam("admin", "The admin address. If not passed, the deployer address will be used.")

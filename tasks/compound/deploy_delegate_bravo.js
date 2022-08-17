@@ -1,7 +1,7 @@
 const { bravoGov } = require('../../helpers/compound_deploy');
 const fs = require('fs');
 
-task('bravo_governance', "Deploys a Bravo governance contract.")
+task('bravo_delegate', "Deploys a Bravo governance, delegate contract. Which is the proxy one and has all the code logic.")
     .addParam("name", "The name of the DAO.")
     .setAction(async (taskArgs, hre) => {
         console.log("Deploying a Compound Bravo Governance contract");
