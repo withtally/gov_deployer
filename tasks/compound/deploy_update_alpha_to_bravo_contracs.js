@@ -20,7 +20,12 @@ task('bravo_upgrade', "Deploys the new contract to upgrade for Bravo. This will 
             `network:\x1B[36m${hre.network.name}\x1B[37m`,
             `\nsigner:\x1B[33m${signer.address}\x1B[37m\n`
         );
-       
+
+        // 0. CHECK IF THE ADDRESSES EXISTS AND ARE INDEED THE CONTRACTS
+        
+        // 1. CHECK THE ALPHA GOV THRESHOULD, IF SIGNER HAS IT
+        
+        // 2. DEPLOY CONTRACTS
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
 
         ///////////////// DELEGATE DEPLOYMENT   ///////////////////////////
@@ -95,6 +100,8 @@ task('bravo_upgrade', "Deploys the new contract to upgrade for Bravo. This will 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nDelegator contract deployed at: ${del.address}\n${verify_str_delegator}\n\n`);
         
+        // 3. INTERACT WITH ALPHA AND CREATE PROPOSAL.
+
         ///////////////// CREATE PROPOSAL ///////////////////////////
 
         // create calldatas.
