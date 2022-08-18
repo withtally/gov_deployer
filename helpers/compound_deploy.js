@@ -105,6 +105,31 @@ const bravoGov = async (
     signer
 ) => {
     // We get the contract to deploy
+    const BravoGovernance = await hre.ethers.getContractFactory("BravoSoloGovernorDelegate");
+
+    // constructor 
+    const gov = await BravoGovernance.connect(signer).deploy(
+        dao_name
+    );
+
+    // await deploy and get block number
+    await gov.deployed();
+    return gov;
+}
+
+/**
+ * bravoGov will deploy the governance contract.
+ * It needs to be delegated by a delegator contract.'
+ * 
+ * @param {*} dao_name , the DAO governance name
+ * @param {*} signer , ethereum address who will sign
+ * @returns 
+ */
+ const bravoGovVanilla = async (
+    dao_name,
+    signer
+) => {
+    // We get the contract to deploy
     const BravoGovernance = await hre.ethers.getContractFactory("BravoGovernorDelegate");
 
     // constructor 
@@ -116,6 +141,7 @@ const bravoGov = async (
     await gov.deployed();
     return gov;
 }
+
 
 /**
  * bravoDelegator will deploy the delegator contract, who delegates to another bravo contract.
@@ -166,5 +192,6 @@ module.exports = {
     timelock,
     alphaGov,
     bravoGov,
+    bravoGovVanilla,
     bravoDelegator
 }

@@ -195,6 +195,7 @@ Deploy in a single command all the contracts needed to create an Bravo Compound 
 
 To deploy bravo you need to deploy __1st the token__, __2nd the timelock__, __3rd the delegate__ and __4th delegator__. Delegator is the main governance contract and delegate is the governance contract used as a proxy to the delegator.
 
+
 ```bash
 npx hardhat bravo_dao \
     --name DAO_NAME \
@@ -213,6 +214,8 @@ Bravo governance delegate is the logic for the governance contract. It is used b
 ##### Delegate
 
 You can find the dao contract code here: [BravoGovernorDelegate.sol](contracts/Compound/BravoGovernorDelegate.sol)
+
+The delegate contract is changed to not block Bravo DAO's which does not have an previous Alpha.
 
 ```bash
 npx hardhat bravo_delegate \

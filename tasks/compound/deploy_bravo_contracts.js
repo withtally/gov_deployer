@@ -2,7 +2,7 @@ const { erc20comp, timelock, bravoGov, bravoDelegator } = require('../../helpers
 const { getExpectedContractAddress } = require('../../helpers/expected_contract');
 const fs = require('fs');
 
-task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO.")
+task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO. This won't update your alpha DAO. I still have not figured out how to do it!")
     .addParam("dao", "The name of the DAO.")
     .addParam("token", "The name of the token, e.g: \"Ether\".")
     .addParam("symbol", "The symbol of the token, e.g: \"ETH\".")
