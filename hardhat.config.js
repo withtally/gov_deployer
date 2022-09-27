@@ -47,6 +47,11 @@ const OPT_GOERLI_URL = process.env.OPT_GOERLI_URL
 // Arbitrum network nodes
 const ARBITRUM_URL = process.env.ARBITRUM_URL
 const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
+// Binance network nodes
+const BINANCE_URL = process.env.BINANCE_URL
+const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
+
+
 
 // Etherscan key
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
@@ -54,6 +59,7 @@ const POLYGONSCAN_KEY = process.env.POLYGONSCAN_KEY
 const SNOWTRACE_KEY = process.env.SNOWTRACE_KEY
 const OPT_ETHERSCAN_KEY = process.env.OPT_ETHERSCAN_KEY
 const ARBISCAN_KEY = process.env.ARBISCAN_KEY
+const BSCSCAN_KEY = process.env.BSCSCAN_KEY
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -104,18 +110,20 @@ module.exports = {
     // To get the correct names needed run: 
     //  npx hardhat verify --list-networks
     apiKey: {
-        mainnet: ETHERSCAN_KEY,
-        goerli: ETHERSCAN_KEY,
-        rinkeby: ETHERSCAN_KEY,
-        kovan: ETHERSCAN_KEY,
-        polygon: POLYGONSCAN_KEY,
-        polygonMumbai: POLYGONSCAN_KEY,
-        avalanche: SNOWTRACE_KEY,
-        avalancheFujiTestnet: SNOWTRACE_KEY,
-        optimisticEthereum: OPT_ETHERSCAN_KEY,
-        optimisticKovan: OPT_ETHERSCAN_KEY,
-        arbitrumOne: ARBISCAN_KEY,
-        arbitrumTestnet: ARBISCAN_KEY,
+      mainnet: ETHERSCAN_KEY,
+      goerli: ETHERSCAN_KEY,
+      rinkeby: ETHERSCAN_KEY,
+      kovan: ETHERSCAN_KEY,
+      polygon: POLYGONSCAN_KEY,
+      polygonMumbai: POLYGONSCAN_KEY,
+      avalanche: SNOWTRACE_KEY,
+      avalancheFujiTestnet: SNOWTRACE_KEY,
+      optimisticEthereum: OPT_ETHERSCAN_KEY,
+      optimisticKovan: OPT_ETHERSCAN_KEY,
+      arbitrumOne: ARBISCAN_KEY,
+      arbitrumTestnet: ARBISCAN_KEY,
+      bsc: BSCSCAN_KEY,
+      bscTestnet: BSCSCAN_KEY,
     }
   },
 
@@ -196,6 +204,17 @@ module.exports = {
     // Arbitrum Rinkeby testnet config
     arbitrum_rinkeby: {
       url: ARBITRUM_RIN_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Binance - networks
+    // Binance mainnet config
+    binance: {
+      url: BINANCE_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Binance testnet config
+    binance_testnet: {
+      url: BINANCE_TESTNET_URL,
       accounts: [PRIVATE_KEY],
     }
   }
