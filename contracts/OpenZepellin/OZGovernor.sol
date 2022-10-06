@@ -13,13 +13,17 @@ contract OZGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         IVotes _token, 
         TimelockController _timelock,
         string memory _name,
-        uint16 _block_ammount,
-        uint32 _block_period,
+        uint16 _voting_delay,
+        uint32 _voting_period,
         uint16 _quorum_fraction,
         uint32 _proposal_threshold 
     )
         Governor(_name)
-        GovernorSettings(_block_ammount /* 1 block */,_block_period  /* 45818 1 week */, _proposal_threshold)
+        GovernorSettings(
+            _voting_delay /* 1 block */,
+            _voting_period  /* 45818 1 week */,
+            _proposal_threshold
+        )
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(_quorum_fraction)
         GovernorTimelockControl(_timelock)
