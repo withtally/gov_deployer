@@ -24,13 +24,26 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
 
         const admin_address = await getExpectedContractAddress(signer, 2);
 
-        // TODO needs more work here.
         let proposers = [];
         let executors = [];
         proposers.push(admin_address);
         executors.push(admin_address);
-        proposers.concat(proposers_string.split(','))
-        executors.concat(executors_string.split(','))
+
+        if( proposers_string.length > 0 ){
+            if ( proposers_string.contains(',') ){
+                proposers.concat(proposers_string.split(','))
+            }else{
+                proposers.push(proposers_string)
+            }
+        }
+
+        if( executors_string.length > 0 ){
+            if ( executors_string.contains(',') ){
+                executors.concat(executors_string.split(','))
+            }else{
+                executors.push(executors_string)
+            }
+        }
 
         // INFO LOGS
         console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
