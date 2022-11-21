@@ -3,7 +3,7 @@ DAO Contracts Deployer
 ======================
 A tool to deploy governance and related contracts supported by Tally via CLI. 
 
-All the contracts disclosed here are opinated versions of it. And you can always redesign and modified if they stick to the overall pattern.
+All the contracts disclosed here are opinated versions of it and you can always redesign and modified if they stick to the overall pattern.
 
 ----------------
 # Gov Deployer
@@ -32,6 +32,8 @@ Look up this comparison chart bellow, to see which one is the best for you.
 | 📍 Supported, was the first governance version. Easier deploy system.  	| 🔩 Supported too since it is an upgrade to the Alpha version.         	| 🔮 Widely Supported, as a contract from open zeppelin. With more features and upgrades.                   	|
 | ❌ Does not support off-chain proposal signatures.                         	| ❌ Does not support off-chain proposal signatures.                       	| ⛓️ Supports Off-chain proposal signatures.                               	|
 
+With this deployer you will be able to see how to build tasks to deploy governances, and deploy Open Zepellins contracts.
+
 ### Table of content
 
 - [Gov Deployer](#gov-deployer)
@@ -48,6 +50,7 @@ Look up this comparison chart bellow, to see which one is the best for you.
       - [Arbitrum](#arbitrum)
       - [Localhost](#localhost)
 - [Deployments](#deployments)
+  - [OpenZepellin](#openzepellin)
   - [Compound](#compound)
     - [Alpha Deployment](#alpha-deployment)
       - [ERC20 Token](#erc20-token)
@@ -56,8 +59,7 @@ Look up this comparison chart bellow, to see which one is the best for you.
     - [Bravo Deployment](#bravo-deployment)
       - [Bravo Governance (Delegate)](#bravo-governance-delegate)
       - [Bravo Delegator](#bravo-delegator)
-  - [OpenZepellin](#openzepellin)
-  - [Nouns, NFTDao](#nouns-nftdao)
+  <!-- - [Nouns, NFTDao](#nouns-nftdao) -->
 
 ### Pre-Requisites
 
@@ -132,7 +134,41 @@ npx hardhat compile
 npx hardhat node # if you're running it locally
 ```
 
+
+## OpenZepellin
+⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
+
+### OZ GOV Deployment from ZERO
+
+
+#### ERC20 Token Votes and Mintable
+
+You can find the token contract code here: [ERC20Comp.sol](contracts/OpenZepellin/TokenVotesMintable.sol)
+
+```bash
+npx hardhat comp_token \
+    --name TOKEN_NAME \
+    --symbol TKN \
+    --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
+```
+#### Timelock contract deployment
+
+You can find the timelock contract code here: [TimeLock.sol](contracts/OpenZepellin/TimelockController.sol)
+
+```bash
+npx hardhat oz_timelock \
+    --delay time_in_seconds_between_172800_2592000
+    --executors 0x123_ADRESS_1...,0x123_ADRESS_2...
+    --proposers 0x123_ADRESS_1...,0x123_ADRESS_2...
+    # if single address just add 1 without comma
+    # executors and proposers are optional the deployer is always added to it.
+```
+
+---------------------------------
+
 ## Compound
+⚠️⚠️ __GIVE PRIORITY TO OZ STYLE__ ⚠️⚠️
+
 
 The following section contains the scripts which will deploy the Compound Alpha version of the governance contracts.
 
@@ -237,71 +273,12 @@ npx hardhat bravo_delegator \
     --period time_in_seconds \ #optional
 ```
 ------------------------------------
-## OpenZepellin
-⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
-
-## Nouns, NFTDao
-⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
-
-# Token/NFT Distribution
-⚠️⚠️ __WORKING ON IT__ ⚠️⚠️
 
 __Future planning:__
-- OpenZepellin.
-- ERC721 deploy and mint.
 - Add a pluggin usage to add it to the Tally website.
 
 ----------------------
 
-This repository is incomplete as I'm still ⚠️⚠️ __WORKING ON IT__ ⚠️⚠️. If you have any suggestions or tips in improving it please mail me: arthur@withtally.com
+This repository is incomplete as I'm still ⚠️⚠️ __WORKING ON IT__ ⚠️⚠️. If you have any suggestions or tips in improving it please mail me: arthur@withtally.com or call in my [git](github.com/afa7789).
 
 ![Example printscreen](resources/print_screen_example.png)
-
-
-<!-- 
-## OpenZepellin DAO 
-
-### with ERC20 Token
-
-### with ERCO Wrapped Token
-
-### with ERC721 Votes
-
-## Compound Alpha
-
-### with ERC20 Token
-
-### with Wrapped Token
-
-## Compound Bravo
-
-### with ERC20 Token
-
-### with Wrapped Token
-
-If possible:
-------------
-## Compound Alpha with ERC721 Votes
-
-## Compound Bravo with ERC721 Votes 
-
-
-# Basic Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-npx hardhat run --network <your-network> scripts/token-deployer.js --parameter1 one --parameter2 two --parameter3 three
-npx hardhat verify --network goerli 0x8b91856Fe8B29493e615fBCA81B94B61DFcc670C 'Hello, Hardhat!'
-
-```
--->

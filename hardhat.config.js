@@ -46,7 +46,8 @@ const OPT_KOVAN_URL = process.env.OPT_KOVAN_URL
 const OPT_GOERLI_URL = process.env.OPT_GOERLI_URL
 // Arbitrum network nodes
 const ARBITRUM_URL = process.env.ARBITRUM_URL
-const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
+// const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
+const ARBITRUM_GOR_URL = process.env.ARBITRUM_GOR_URL
 // Binance network nodes
 const BINANCE_URL = process.env.BINANCE_URL
 const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
@@ -112,19 +113,30 @@ module.exports = {
     apiKey: {
       mainnet: ETHERSCAN_KEY,
       goerli: ETHERSCAN_KEY,
-      rinkeby: ETHERSCAN_KEY,
-      kovan: ETHERSCAN_KEY,
+      // rinkeby: ETHERSCAN_KEY,
+      // kovan: ETHERSCAN_KEY,
       polygon: POLYGONSCAN_KEY,
       polygonMumbai: POLYGONSCAN_KEY,
       avalanche: SNOWTRACE_KEY,
       avalancheFujiTestnet: SNOWTRACE_KEY,
       optimisticEthereum: OPT_ETHERSCAN_KEY,
-      optimisticKovan: OPT_ETHERSCAN_KEY,
+      optimisticEthereum: OPT_ETHERSCAN_KEY,
+      // optimisticKovan: OPT_ETHERSCAN_KEY,
       arbitrumOne: ARBISCAN_KEY,
-      arbitrumTestnet: ARBISCAN_KEY,
+      arbitrumGoerli: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
-    }
+    },
+    customChains: [
+      {
+        network: "arbitrumGoerli",
+        chainId: 421613,
+        urls: {
+          apiURL: "https://api-goerli.arbiscan.io/api",
+          browserURL: "https://goerli.arbiscan.io"
+        }
+      }
+    ]
   },
 
   networks: {
@@ -148,15 +160,15 @@ module.exports = {
       accounts: [PRIVATE_KEY],
     },
     // Rinkeby testnet config
-    rinkeby: {
-      url: RINKEBY_URL,
-      accounts: [PRIVATE_KEY],
-    },
-    // Kovan testnet config
-    kovan: {
-      url: KOVAN_URL,
-      accounts: [PRIVATE_KEY],
-    },
+    // rinkeby: {
+    //   url: RINKEBY_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
+    // // Kovan testnet config
+    // kovan: {
+    //   url: KOVAN_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
     // Polygon (Matic) - networks
     // Polygon mainnet config
     polygon: {
@@ -186,10 +198,10 @@ module.exports = {
       accounts: [PRIVATE_KEY],
     },
     // Optimism Kovan testnet config
-    optimism_kovan: {
-      url: OPT_KOVAN_URL,
-      accounts: [PRIVATE_KEY],
-    },
+    // optimism_kovan: {
+    //   url: OPT_KOVAN_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
     // Optimism Goerli testnet config
     optimism_goerli: {
       url: OPT_GOERLI_URL,
@@ -202,8 +214,13 @@ module.exports = {
       accounts: [PRIVATE_KEY],
     },
     // Arbitrum Rinkeby testnet config
-    arbitrum_rinkeby: {
-      url: ARBITRUM_RIN_URL,
+    // arbitrum_rinkeby: {
+    //   url: ARBITRUM_RIN_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
+    // Arbitrum Goerli testnet config
+    arbitrum_goerli: {
+      url: ARBITRUM_GOR_URL,
       accounts: [PRIVATE_KEY],
     },
     // Binance - networks
