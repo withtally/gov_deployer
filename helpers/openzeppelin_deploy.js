@@ -52,7 +52,7 @@ const erc20Votes = async (
     signer
 ) => {
     // We get the contract to deploy
-    const TokenERC20Votes = await hre.ethers.getContractFactory("TokenERC20Votes");
+    const TokenERC20Votes = await hre.ethers.getContractFactory("TokenERC20VotesMintable");
 
     //constructor(string memory _name, string memory _symbol)
     const token = await TokenERC20Votes.connect(signer).deploy(

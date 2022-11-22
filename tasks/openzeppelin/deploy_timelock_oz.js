@@ -1,4 +1,4 @@
-const { timelock } = require('../../helpers/');
+const { timelockController } = require('../../helpers/openzeppelin_deploy');
 const fs = require('fs');
 
 task('oz_timelock', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
@@ -51,7 +51,7 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         console.log("timelock delay:\x1B[35m", timelock_delay, "\x1B[37m");
 
         //  DEPLOY TIMELOCK
-        const time = await timelock(
+        const time = await timelockController(
             timelock_delay,
             proposers,
             executors,
@@ -65,11 +65,20 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         console.log(`Creation block number:\x1B[35m`, lb.number, "\x1B[37m");
         console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
+        fs.appendFileSync(
+            `arguments_${time.address}.j`,
+            `module.exports = [
+                ${timelock_delay},
+                ${JSON.stringify(proposers)},
+                ${JSON.stringify(executors)},
+            ];`
+        );
+
         // verify cli command
         const verify_str = `npx hardhat verify ` +
             `--network ${network.name} ` +
-            `${time.address} ` +
-            `"${admin_address}" "${timelock_delay}"`
+            `--constructor-args arguments_${time.address}.js`+
+            ` ${time.address}`;
 
         console.log("\n" + verify_str)
 

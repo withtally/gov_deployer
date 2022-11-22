@@ -25,6 +25,9 @@ require("dotenv").config();
 
 // requiring tasks.
 require("./tasks/compound");
+require("./tasks/openzeppelin");
+require("./tasks/expected_contract.js");
+
 
 /* ========== DATA FROM .env ===========*/
 // Private key

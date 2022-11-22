@@ -1,7 +1,7 @@
 const { erc20Wrapper, erc20Votes } = require('../../helpers/openzeppelin_deploy');
 const fs = require('fs');
 
-task('wrapped_token', "Deploys a OpenZeppelin voting token contract")
+task('votes_token', "Deploys a OpenZeppelin voting token contract")
     .addParam("name", "The token name. eg: Ethereum")
     .addParam("symbol", "The token symbol. eg: ETH")
     .setAction(async (taskArgs, hre) => {

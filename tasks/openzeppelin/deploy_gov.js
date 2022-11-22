@@ -5,10 +5,10 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
     .addParam("name", "The name of the DAO.")
     .addParam("token", "The token contract address.")
     .addParam("timelock", "The address of the timelock contract.")
-    .addOptionalParam("voting_delay", "How long after a proposal is created should voting power be fixed, 6570 blocks is 1 day.")
-    .addOptionalParam("voting_period", "The voting period in blocks, 45992 blocks is 1 week.")
-    .addOptionalParam("quorum_fraction", "Fraction of quorum to approve.")
-    .addOptionalParam("proposal_threshold", "Minimum token required for a proposal.")
+    .addOptionalParam("delay", "Voting delay. How long after a proposal is created should voting power be fixed, 6570 blocks is 1 day.")
+    .addOptionalParam("period", "Voting period. The voting period in blocks, 45992 blocks is 1 week.")
+    .addOptionalParam("fraction", "Quorum Fraction. Fraction of quorum to approve.")
+    .addOptionalParam("threshold", "Proposal threshold. Minimum token required for a proposal.")
     .setAction(async (taskArgs, hre) => {
         console.log("Deploying a Open Zepellin Governance contract");
 
@@ -24,19 +24,19 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
         const dao_name = taskArgs.name;
         const token_address = taskArgs.token;
         const timelock_address = taskArgs.timelock;
-        const voting_delay= taskArgs.voting_delay ? taskArgs.voting_delay : 1;
-        const voting_period = taskArgs.voting_period ? taskArgs.voting_period : 45818;
-        const quorum_fraction = taskArgs.quorum_fraction ? taskArgs.quorum_fraction : 60;
-        const proposal_threshold = taskArgs.proposal_threshold ? taskArgs.proposal_threshold : 0;
+        const voting_delay= taskArgs.votingDelay ? taskArgs.voting_delay : 1;
+        const voting_period = taskArgs.votingPeriod ? taskArgs.voting_period : 45818;
+        const quorum_fraction = taskArgs.quorumFraction ? taskArgs.quorum_fraction : 60;
+        const proposal_threshold = taskArgs.proposalThreshold ? taskArgs.proposal_threshold : 0;
 
         // INFO LOGS
         console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
         console.log("token_address:\x1B[33m", token_address, "\x1B[37m");
         console.log("dao_name:\x1B[36m", dao_name, "\x1B[37m\n");
-        console.log("voting_delay:\x1B[36m", voting_delay, "\x1B[37m\n");
-        console.log("voting_period:\x1B[36m", voting_period, "\x1B[37m\n");
-        console.log("quorum_fraction:\x1B[36m", quorum_fraction, "\x1B[37m\n");
-        console.log("proposal_threshold:\x1B[36m", proposal_threshold, "\x1B[37m\n");
+        console.log("voting_delay:\x1B[36m", delay, "\x1B[37m\n");
+        console.log("voting_period:\x1B[36m", period, "\x1B[37m\n");
+        console.log("quorum_fraction:\x1B[36m", fraction, "\x1B[37m\n");
+        console.log("proposal_threshold:\x1B[36m", threshold, "\x1B[37m\n");
 
         //  DEPLOY OZ GOVERNANCE
         const gov = await ozGovernor(
