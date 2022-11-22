@@ -71,7 +71,7 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         console.log(`Deploy your DAO now, to use the expected admin in the timelock contract.`)
 
         fs.appendFileSync(
-            `arguments_${time.address}.j`,
+            `arguments_${time.address}.js`,
             `module.exports = [
     ${timelock_delay},
     ${JSON.stringify(proposers)},

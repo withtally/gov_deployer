@@ -24,19 +24,19 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
         const dao_name = taskArgs.name;
         const token_address = taskArgs.token;
         const timelock_address = taskArgs.timelock;
-        const voting_delay= taskArgs.votingDelay ? taskArgs.voting_delay : 1;
-        const voting_period = taskArgs.votingPeriod ? taskArgs.voting_period : 45818;
-        const quorum_fraction = taskArgs.quorumFraction ? taskArgs.quorum_fraction : 60;
-        const proposal_threshold = taskArgs.proposalThreshold ? taskArgs.proposal_threshold : 0;
+        const voting_delay= taskArgs.delay ? taskArgs.delay : 1;
+        const voting_period = taskArgs.period ? taskArgs.period : 45818;
+        const quorum_fraction = taskArgs.fraction ? taskArgs.fraction : 60;
+        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 0;
 
         // INFO LOGS
         console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
         console.log("token_address:\x1B[33m", token_address, "\x1B[37m");
         console.log("dao_name:\x1B[36m", dao_name, "\x1B[37m\n");
-        console.log("voting_delay:\x1B[36m", delay, "\x1B[37m\n");
-        console.log("voting_period:\x1B[36m", period, "\x1B[37m\n");
-        console.log("quorum_fraction:\x1B[36m", fraction, "\x1B[37m\n");
-        console.log("proposal_threshold:\x1B[36m", threshold, "\x1B[37m\n");
+        console.log("voting_delay:\x1B[36m", voting_delay, "\x1B[37m\n");
+        console.log("voting_period:\x1B[36m", voting_period, "\x1B[37m\n");
+        console.log("quorum_fraction:\x1B[36m", quorum_fraction, "\x1B[37m\n");
+        console.log("proposal_threshold:\x1B[36m", proposal_threshold, "\x1B[37m\n");
 
         //  DEPLOY OZ GOVERNANCE
         const gov = await ozGovernor(
@@ -68,4 +68,3 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
         fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}  - ${network.address}\n${verify_str}\n\n`);
 
     });
-
