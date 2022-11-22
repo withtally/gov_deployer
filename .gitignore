@@ -19,3 +19,5 @@ typechain
 cache
 artifacts
 contracts.out
+
+arguments_*.js
