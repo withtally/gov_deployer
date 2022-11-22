@@ -19,7 +19,6 @@ task('comp_timelock', "Deploys a timelock contract with the given delay. You hav
         const admin_address = await getExpectedContractAddress(signer, 2);
 
         // INFO LOGS
-        console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
         console.log("admin address:\x1B[33m", admin_address, "\x1B[37m\n");
         console.log("timelock delay:\x1B[35m", timelock_delay, "\x1B[37m");
 

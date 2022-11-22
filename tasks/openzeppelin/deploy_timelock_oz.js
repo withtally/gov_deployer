@@ -1,4 +1,6 @@
 const { timelockController } = require('../../helpers/openzeppelin_deploy');
+const { getExpectedContractAddress } = require('../../helpers/expected_contract');
+
 const fs = require('fs');
 
 task('oz_timelock', "Deploys a timelock contract with the given delay. You have to deploy the governance after it.")
@@ -12,8 +14,8 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
 
         // HARDHAT LOG
         console.log(
-            `network:\x1B[36m${hre.network.name}\x1B[37m`,
-            `\nsigner:\x1B[33m${signer.address}\x1B[37m\n`
+            `network:\x1B[36m ${hre.network.name}\x1B[37m`,
+            `\nsigner:\x1B[33m ${signer.address}\x1B[37m\n`
         );
 
         // TIMELOCK DATA
@@ -30,7 +32,7 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         executors.push(admin_address);
 
         if( proposers_string.length > 0 ){
-            if ( proposers_string.contains(',') ){
+            if (new RegExp('\\b'+","+'\\b', 'i').test(proposers_string) ){
                 proposers.concat(proposers_string.split(','))
             }else{
                 proposers.push(proposers_string)
@@ -38,7 +40,7 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         }
 
         if( executors_string.length > 0 ){
-            if ( executors_string.contains(',') ){
+            if (new RegExp('\\b'+","+'\\b', 'i').test(executors_string) ){
                 executors.concat(executors_string.split(','))
             }else{
                 executors.push(executors_string)
@@ -46,9 +48,12 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         }
 
         // INFO LOGS
-        console.log("network:\x1B[32m", network, "\x1B[37m, provider connection:", provider.connection);
-        console.log("admin address:\x1B[33m", admin_address, "\x1B[37m\n");
+        console.log("gov_admin_address:\x1B[33m", admin_address, "\x1B[37m\n");
         console.log("timelock delay:\x1B[35m", timelock_delay, "\x1B[37m");
+
+        console.log("executors",proposers)
+        console.log("executors",executors)
+
 
         //  DEPLOY TIMELOCK
         const time = await timelockController(
@@ -68,9 +73,9 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         fs.appendFileSync(
             `arguments_${time.address}.j`,
             `module.exports = [
-                ${timelock_delay},
-                ${JSON.stringify(proposers)},
-                ${JSON.stringify(executors)},
+    ${timelock_delay},
+    ${JSON.stringify(proposers)},
+    ${JSON.stringify(executors)},
             ];`
         );
 

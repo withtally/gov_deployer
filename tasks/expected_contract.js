@@ -27,3 +27,5 @@ task('expected_contract', "next contract expected address, use 2 if you're deplo
     
     });
 
+    //0x5FbDB2315678afecb367f032d93F642f64180aa3
+

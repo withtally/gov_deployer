@@ -181,10 +181,10 @@ const ozGovernor = async (
     signer
 ) => {
     // We get the contract to deploy
-    const TimelockController = await hre.ethers.getContractFactory("TimelockController");
+    const TimelockControllerOZ = await hre.ethers.getContractFactory("TimelockControllerOZ");
 
     //constructor( uint256 minDelay, address[] memory proposers, address[] memory executors)
-    const timelock = await TimelockController.connect(signer).deploy(
+    const timelock = await TimelockControllerOZ.connect(signer).deploy(
         minDelay,
         proposers,
         executors
