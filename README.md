@@ -140,7 +140,7 @@ npx hardhat node # if you're running it locally
 
 ### OZ GOV Deployment from ZERO
 
-
+Deploy the following contracts:
 #### ERC20 Token Votes and Mintable
 
 You can find the token contract code here: [ERC20Comp.sol](contracts/OpenZepellin/TokenVotesMintable.sol)
@@ -150,6 +150,7 @@ npx hardhat comp_token \
     --name TOKEN_NAME \
     --symbol TKN \
     --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
+# you will have to mint tokens, this is not decided by Tally how you should deal with it, due to legal reasons.
 ```
 #### Timelock contract deployment
 
@@ -163,6 +164,38 @@ npx hardhat oz_timelock \
     # if single address just add 1 without comma
     # executors and proposers are optional the deployer is always added to it.
 ```
+
+#### Governance contract deployment
+
+You can find the timelock contract code here: [TimeLock.sol](contracts/OpenZepellin/TimelockController.sol)
+
+```bash
+npx hardhat oz_governance \
+    --name DAO_NAME \
+    --token 0x123_ADRESS_1_token \
+    --timelock 0x123_ADRESS_2_timelock
+```
+
+with optional parameters:
+
+```bash
+#everything after timelock is optional
+npx hardhat oz_governance \
+    --name DAO_NAME \
+    --token 0x123_ADRESS_1_token \
+    --timelock 0x123_ADRESS_2_timelock \
+    --delay NUMBER_OF_BLOCKS_AFTER_CREATING_PROPOSAL_YOU_CAN_VOTE \
+    --period PERIOD_YOU_CAN_VOTE \
+    --fraction QUORUM_FRACTION_LESS_THAN_100_NUMERATOR \
+    --threshold MINIMUM_TOKEN_TO_PROPOSE
+# default values:
+# delay is 1 block
+# period is 45818 blocks
+# fraction is 60
+# threshold is 0 ( I recommend putting a threshold )
+```
+
+
 
 ---------------------------------
 

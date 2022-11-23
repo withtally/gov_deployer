@@ -20,4 +20,5 @@ cache
 artifacts
 contracts.out
 
-arguments_*.js
+arguments*.j
+arguments*.js
