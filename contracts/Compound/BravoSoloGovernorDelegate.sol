@@ -68,7 +68,7 @@ contract BravoSoloGovernorDelegate is GovernorBravoDelegateStorageV2, GovernorBr
         votingPeriod = votingPeriod_;
         votingDelay = votingDelay_;
         proposalThreshold = proposalThreshold_;
-        timelock.acceptAdmin();
+        // timelock.acceptAdmin(); 
     }
 
     /**
