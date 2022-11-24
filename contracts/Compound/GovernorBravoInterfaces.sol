@@ -87,7 +87,7 @@ contract GovernorBravoDelegateStorageV1 is GovernorBravoDelegatorStorage {
     TimelockInterface public timelock;
 
     /// @notice The address of the Compound governance token
-    CompInterface public comp;
+    CompInterface public token;
 
     /// @notice The official record of all proposals ever proposed
     mapping (uint => Proposal) public proposals;

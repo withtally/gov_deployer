@@ -27,7 +27,7 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
         const voting_delay= taskArgs.delay ? taskArgs.delay : 1;
         const voting_period = taskArgs.period ? taskArgs.period : 45818;
         const quorum_fraction = taskArgs.fraction ? taskArgs.fraction : 60;
-        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 0;
+        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 1000000000000000000;
 
         // INFO LOGS
         console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
