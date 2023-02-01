@@ -191,10 +191,10 @@ npx hardhat oz_governance \
     --fraction QUORUM_FRACTION_LESS_THAN_100_NUMERATOR \
     --threshold MINIMUM_TOKEN_TO_PROPOSE
 # default values:
-# delay is 1 block
+# delay is 100 block
 # period is 45818 blocks
 # fraction is 60
-# threshold is 0 ( I recommend putting a threshold )
+# threshold is 100 ( I recommend putting a threshold in accord to your bussiness)
 ```
 
 

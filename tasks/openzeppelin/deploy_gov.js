@@ -24,10 +24,10 @@ task('oz_governance', "Deploys a Open Zepellin governance contract. You have to 
         const dao_name = taskArgs.name;
         const token_address = taskArgs.token;
         const timelock_address = taskArgs.timelock;
-        const voting_delay= taskArgs.delay ? taskArgs.delay : 1;
+        const voting_delay= taskArgs.delay ? taskArgs.delay : 100;
         const voting_period = taskArgs.period ? taskArgs.period : 45818;
         const quorum_fraction = taskArgs.fraction ? taskArgs.fraction : 60;
-        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 1000000000000000000;
+        const proposal_threshold = taskArgs.threshold ? taskArgs.threshold : 100;
 
         // INFO LOGS
         console.log("timelock_address:\x1B[33m", timelock_address, "\x1B[37m\n");
