@@ -51,7 +51,7 @@ task('oz_timelock', "Deploys a timelock contract with the given delay. You have 
         console.log("gov_admin_address:\x1B[33m", admin_address, "\x1B[37m\n");
         console.log("timelock delay:\x1B[35m", timelock_delay, "\x1B[37m");
 
-        console.log("executors",proposers)
+        console.log("proposers",proposers)
         console.log("executors",executors)
 
 

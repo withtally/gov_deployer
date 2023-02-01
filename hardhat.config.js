@@ -54,8 +54,8 @@ const ARBITRUM_GOR_URL = process.env.ARBITRUM_GOR_URL
 // Binance network nodes
 const BINANCE_URL = process.env.BINANCE_URL
 const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
-
-
+// Gnosis netowork nodes
+const GNOSIS_URL = process.env.GNOSIS_URL
 
 // Etherscan key
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
@@ -64,6 +64,7 @@ const SNOWTRACE_KEY = process.env.SNOWTRACE_KEY
 const OPT_ETHERSCAN_KEY = process.env.OPT_ETHERSCAN_KEY
 const ARBISCAN_KEY = process.env.ARBISCAN_KEY
 const BSCSCAN_KEY = process.env.BSCSCAN_KEY
+const GNOSISSCAN_KEY = process.env.GNOSISSCAN_KEY
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -129,6 +130,7 @@ module.exports = {
       arbitrumGoerli: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
+      xdai: GNOSISSCAN_KEY
     },
     customChains: [
       {
@@ -235,6 +237,11 @@ module.exports = {
     // Binance testnet config
     binance_testnet: {
       url: BINANCE_TESTNET_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Gnosis
+    gnosis: {
+      url: GNOSIS_URL,
       accounts: [PRIVATE_KEY],
     }
   }

@@ -71,6 +71,8 @@ With this deployer you will be able to see how to build tasks to deploy governan
 ```bash
 git clone https://github.com/afa7789/gov_deployer.git && cd gov_deployer
 yarn install
+# copy and replace values on .env
+cp .env.example .env
 ```
 
 ### Networks that Tally support
@@ -158,7 +160,7 @@ You can find the timelock contract code here: [TimeLock.sol](contracts/OpenZepel
 
 ```bash
 npx hardhat oz_timelock \
-    --delay time_in_seconds_between_172800_2592000
+    --delay time_in_seconds_172800 #48 hours
     --executors 0x123_ADRESS_1...,0x123_ADRESS_2...
     --proposers 0x123_ADRESS_1...,0x123_ADRESS_2...
     # if single address just add 1 without comma
