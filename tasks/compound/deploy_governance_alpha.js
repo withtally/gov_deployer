@@ -53,7 +53,7 @@ task('alpha_governance', "Deploys a Alpha governance contract. Deploy after time
         console.log("\n" + verify_str)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}  - ${network.address}\n${verify_str}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}  - ${hre.network.name} - ${lb.number}\n${verify_str}\n\n`);
 
     });
 

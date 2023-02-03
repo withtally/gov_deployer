@@ -42,13 +42,6 @@ With this deployer you will be able to see how to build tasks to deploy governan
     - [Table of Content](#table-of-content)
     - [Pre-Requisites](#pre-requisites)
     - [Installation](#installation)
-    - [Networks that Tally support](#networks-that-tally-support)
-      - [Ethereum](#ethereum)
-      - [Polygon](#polygon)
-      - [Avalanche](#avalanche)
-      - [Optimism](#optimism)
-      - [Arbitrum](#arbitrum)
-      - [Localhost](#localhost)
 - [Deployments](#deployments)
   - [OpenZepellin](#openzepellin)
   - [Compound](#compound)
@@ -60,6 +53,13 @@ With this deployer you will be able to see how to build tasks to deploy governan
       - [Bravo Governance (Delegate)](#bravo-governance-delegate)
       - [Bravo Delegator](#bravo-delegator)
   <!-- - [Nouns, NFTDao](#nouns-nftdao) -->
+- [Networks that Tally support](#networks-that-tally-support)
+      - [Ethereum](#ethereum)
+      - [Polygon](#polygon)
+      - [Avalanche](#avalanche)
+      - [Optimism](#optimism)
+      - [Arbitrum](#arbitrum)
+      - [Localhost](#localhost)
 
 ### Pre-Requisites
 
@@ -73,48 +73,8 @@ git clone https://github.com/afa7789/gov_deployer.git && cd gov_deployer
 yarn install
 # copy and replace values on .env
 cp .env.example .env
+# you will need to get node rpcs to make it work, probably public rpc are enough, since it's just deployment.
 ```
-
-### Networks that Tally support
-
-__Following we have the block explorers and the networks that are supported currently by Tally app.__
-
-#### Ethereum
-- Ethereum -  https://etherscan.io/
-- Ethereum Testnet Göerli -  https://goerli.etherscan.io/
-- Ethereum Testnet Rikenby - https://rinkeby.etherscan.io/
-- Ethereum Testnet Kovan - https://kovan.etherscan.io/
-
-#### Polygon
-- Polygon (Matic) - https://polygonscan.com/
-- Polygon Testnet Mumbai - https://mumbai.polygonscan.com/
-
-#### Avalanche
-- Avalanche - https://snowtrace.io/
-- Avalanche Testnet Fuji - https://testnet.snowtrace.io/
-
-#### Optimism
-- Optimism - https://optimistic.etherscan.io/
-- Optimism Kovan - https://kovan-optimistic.etherscan.io/
-- Optimism Goerli - * missing etherscan explorer *
-
-#### Arbitrum
-- Arbitrum One - https://arbiscan.io/
-- Arbitrum Rinkeby - https://testnet.arbiscan.io/
-
-#### Localhost
-- Localhost - http://localhost:8545/
-- Blockexplorer I suggest using Ganache: https://github.com/trufflesuite/ganache-ui
-
-To add funds to other accounts you can add the chain to your metamask:
-    - Name: Hardhat
-    - URL/RPC: http://121.0.0.1:8545 
-    - Chain ID: 31337
-    - Currency: ETH
-
-Run `npx hardhat node` , it will start the node and print the private_keys and pub_keys, add one of them to your metamask, so you can send funds from that account to others.
-
-If you ever reset the node, the configurations such as block nounce, and other configs in metamask have to be reset. To do so follow these steps: SETTINGS >> ADVANCED >> scroll down >> RESET ACCOUNTS (this will reset the state of them in the networks), and you can use again with localhost.
 
 ------------------------------------
 
@@ -148,11 +108,14 @@ Deploy the following contracts:
 You can find the token contract code here: [ERC20Comp.sol](contracts/OpenZepellin/TokenVotesMintable.sol)
 
 ```bash
-npx hardhat comp_token \
+npx hardhat votes_token \
     --name TOKEN_NAME \
     --symbol TKN \
     --owner 0x_ADDRESS_OF_OWNER_OF_TOTAL_TOKENS #Optional, default value is the deployer address
 # you will have to mint tokens, this is not decided by Tally how you should deal with it, due to legal reasons.
+
+# you will need to mint the tokens as owner
+# after minted and distributed you can set the owner of the contract as the Governance.
 ```
 #### Timelock contract deployment
 
@@ -317,3 +280,45 @@ __Future planning:__
 This repository is incomplete as I'm still ⚠️⚠️ __WORKING ON IT__ ⚠️⚠️. If you have any suggestions or tips in improving it please mail me: arthur@withtally.com or call in my [git](github.com/afa7789).
 
 ![Example printscreen](resources/print_screen_example.png)
+
+
+### Networks that Tally support
+
+__Following we have the block explorers and the networks that are supported currently by Tally app.__
+
+#### Ethereum
+- Ethereum -  https://etherscan.io/
+- Ethereum Testnet Göerli -  https://goerli.etherscan.io/
+- Ethereum Testnet Rikenby - https://rinkeby.etherscan.io/
+- Ethereum Testnet Kovan - https://kovan.etherscan.io/
+
+#### Polygon
+- Polygon (Matic) - https://polygonscan.com/
+- Polygon Testnet Mumbai - https://mumbai.polygonscan.com/
+
+#### Avalanche
+- Avalanche - https://snowtrace.io/
+- Avalanche Testnet Fuji - https://testnet.snowtrace.io/
+
+#### Optimism
+- Optimism - https://optimistic.etherscan.io/
+- Optimism Kovan - https://kovan-optimistic.etherscan.io/
+- Optimism Goerli - * missing etherscan explorer *
+
+#### Arbitrum
+- Arbitrum One - https://arbiscan.io/
+- Arbitrum Rinkeby - https://testnet.arbiscan.io/
+
+#### Localhost
+- Localhost - http://localhost:8545/
+- Blockexplorer I suggest using Ganache: https://github.com/trufflesuite/ganache-ui
+
+To add funds to other accounts you can add the chain to your metamask:
+    - Name: Hardhat
+    - URL/RPC: http://121.0.0.1:8545 
+    - Chain ID: 31337
+    - Currency: ETH
+
+Run `npx hardhat node` , it will start the node and print the private_keys and pub_keys, add one of them to your metamask, so you can send funds from that account to others.
+
+If you ever reset the node, the configurations such as block nounce, and other configs in metamask have to be reset. To do so follow these steps: SETTINGS >> ADVANCED >> scroll down >> RESET ACCOUNTS (this will reset the state of them in the networks), and you can use again with localhost.

@@ -56,7 +56,7 @@ task('bravo_upgrade', "Deploys the new contract to upgrade for Bravo. This will 
         console.log("\n" + verify_str_governance)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}\n${verify_str_governance}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address} - ${hre.network.name} - ${govBlock.number}\n${verify_str_governance}\n\n`);
         
         ///////////////// DELEGATOR DEPLOYMENT ///////////////////////////
         // DELEGATOR DATA
@@ -98,7 +98,7 @@ task('bravo_upgrade', "Deploys the new contract to upgrade for Bravo. This will 
         console.log("\n" + verify_str_delegator)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nDelegator contract deployed at: ${del.address}\n${verify_str_delegator}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nDelegator contract deployed at: ${del.address} - ${hre.network.name} - ${delBlock.number}\n${verify_str_delegator}\n\n`);
         
         // 3. INTERACT WITH ALPHA AND CREATE PROPOSAL.
 

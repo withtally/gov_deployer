@@ -45,7 +45,7 @@ task('nft_votes', "Deploys a OpenZeppelin voting nftoken contract")
         console.log("\n" + verify_str)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}  - ${network.address}\n${verify_str}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}  - ${hre.network.name} - ${lb.number}\n${verify_str}\n\n`);
 
     });
 

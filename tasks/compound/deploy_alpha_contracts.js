@@ -53,7 +53,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
             `${token_owner} "${token_name}" ${token_symbol}`
         console.log("\n" + verify_str_token)
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}\n${verify_str_token}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address} - ${hre.network.name} - ${blockToken.number}\n${verify_str_token}\n\n`);
 
         ///////////////// TIMELOCK DEPLOYMENT ///////////////////////////
         // TIMELOCK DATA
@@ -86,7 +86,7 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
         console.log("\n" + verify_str_timelock)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nTimelock contract deployed at: ${time.address}\n${verify_str_timelock}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nTimelock contract deployed at: ${time.address} - ${hre.network.name} - ${timelockBlock.number}\n${verify_str_timelock}\n\n`);
 
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
         // GOVERNANCE DATA
@@ -125,6 +125,6 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
         console.log("\n" + verify_str_governance)
 
         // save it to a file to make sure the user doesn't lose it.
-        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}\n${verify_str_governance}\n\n`);
+        fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address} - ${hre.network.name} - ${govBlock.number}\n${verify_str_governance}\n\n`);
 
     });
