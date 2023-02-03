@@ -18,7 +18,7 @@ To skip reading too much and go directly to the commands [click here](#deploymen
 
 Are you still unsure on what governance to use, let's us help you!
 
-The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Tally recommends you to use Openzeppelin contract, because it will be the one with more support and less chance of being deprecated, and it is too the contracts with more longevity, maintenance and support. 
+The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Tally recommends you to use Openzeppelin contract, because it will be the one with more support and less chance of being deprecated, and it is too the contracts with more longevity, maintenance and support as well as have more functionalities and features in Tally. 
 
 Look up this comparison chart bellow, to see which one is the best for you.
 
@@ -102,6 +102,36 @@ npx hardhat node # if you're running it locally
 
 ### OZ GOV Deployment from ZERO
 
+```bash
+    npx hardhat oz_dao \
+        --name "Dave DAO" \
+        --token "DAVE TT" \
+        --symbol "DTT" \
+        --delay 172800
+        --network goerli
+```
+
+with optional parameters:
+
+```bash
+    npx hardhat oz_dao \
+        --name "Dave DAO" \
+        --token "DAVE TT" \
+        --symbol "DTT" \
+        --delay 172800 \
+        --executors 0x123_ADRESS_1...,0x123_ADRESS_2... \ # if single address just add 1 without comma
+        --proposers 0x123_ADRESS_1...,0x123_ADRESS_2... \ # executors and proposers are optional the deployer is always added to it.
+        --vdelay NUMBER_OF_BLOCKS_AFTER_CREATING_PROPOSAL_YOU_CAN_VOTE \
+        --period PERIOD_YOU_CAN_VOTE \
+        --fraction QUORUM_FRACTION_LESS_THAN_100_NUMERATOR \
+        --threshold MINIMUM_TOKEN_TO_PROPOSE
+    # default values:
+    # vdelay is 100 blocks
+    # period is 45818 blocks
+    # fraction is 60
+    # threshold is 100 ( I recommend putting a threshold in accord to your bussiness)
+```
+
 Deploy the following contracts:
 #### ERC20 Token Votes and Mintable
 
@@ -154,19 +184,16 @@ npx hardhat oz_governance \
     --fraction QUORUM_FRACTION_LESS_THAN_100_NUMERATOR \
     --threshold MINIMUM_TOKEN_TO_PROPOSE
 # default values:
-# delay is 100 block
+# delay is 100 blocks
 # period is 45818 blocks
 # fraction is 60
 # threshold is 100 ( I recommend putting a threshold in accord to your bussiness)
 ```
 
-
-
 ---------------------------------
 
 ## Compound
 ⚠️⚠️ __GIVE PRIORITY TO OZ STYLE__ ⚠️⚠️
-
 
 The following section contains the scripts which will deploy the Compound Alpha version of the governance contracts.
 
