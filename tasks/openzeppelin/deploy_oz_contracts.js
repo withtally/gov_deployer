@@ -139,7 +139,7 @@ task('oz_dao', "Deploys all contracts, to have an OZ Governance DAO.")
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nTimelock contract deployed at: ${time.address}` +
-        `  - ${hre.network.name} - ${timelockBlock.number}\n${verify_str_timelock}\n\n`);
+        `  - ${hre.network.name} - block number:${timelockBlock.number}\n${verify_str_timelock}\n\n`);
 
         ///////////////// GOVERNANCE DEPLOYMENT ///////////////////////////
         // GOVERNANCE DATA
@@ -197,6 +197,6 @@ task('oz_dao', "Deploys all contracts, to have an OZ Governance DAO.")
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address}` +
-        `  - ${hre.network.name} - ${lb.number}\n${verify_str_dao}\n\n`);
+        `  - ${hre.network.name} - block number:${lb.number}\n${verify_str_dao}\n\n`);
 
     });
