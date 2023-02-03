@@ -56,7 +56,7 @@ task('oz_dao', "Deploys all contracts, to have an OZ Governance DAO.")
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nToken contract deployed at: ${token.address}` +
-        ` - ${hre.network.name} - ${tokenBlock.number}\n${verify_str}\n\n`);
+        ` - ${hre.network.name} - block number: ${tokenBlock.number}\n${verify_str}\n\n`);
 
         ///////////////// TIMELOCK DEPLOYMENT ///////////////////////////
         // TIMELOCK DATA
