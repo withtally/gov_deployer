@@ -132,7 +132,7 @@ task('oz_dao', "Deploys all contracts, to have an OZ Governance DAO.")
         // verify cli command
         const verify_str_timelock = `npx hardhat verify ` +
             `--network ${network.name} ` +
-            `--constructor-args arguments_${time.address}.js`+
+            `--constructor-args arguments_${time.address}.js `+
             `${time.address}\n`;
 
         console.log("\n" + verify_str_timelock)
