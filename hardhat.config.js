@@ -35,8 +35,8 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 // Ethereum network nodes
 const ETHEREUM_URL = process.env.ETHEREUM_URL
 const GOERLI_URL = process.env.GOERLI_URL
-const RINKEBY_URL = process.env.RINKEBY_URL
-const KOVAN_URL = process.env.KOVAN_URL
+const SEPOLIA_URL = process.env.SEPOLIA_URL
+
 // Polygon network nodes
 const POLYGON_URL = process.env.POLYGON_URL
 const MUMBAI_URL = process.env.MUMBAI_URL
@@ -45,7 +45,6 @@ const AVALANCHE_URL = process.env.AVALANCHE_URL
 const FUJI_URL = process.env.FUJI_URL
 // Optimism network nodes
 const OPTIMISM_URL = process.env.OPTIMISM_URL
-const OPT_KOVAN_URL = process.env.OPT_KOVAN_URL
 const OPT_GOERLI_URL = process.env.OPT_GOERLI_URL
 // Arbitrum network nodes
 const ARBITRUM_URL = process.env.ARBITRUM_URL
@@ -117,15 +116,13 @@ module.exports = {
     apiKey: {
       mainnet: ETHERSCAN_KEY,
       goerli: ETHERSCAN_KEY,
-      // rinkeby: ETHERSCAN_KEY,
-      // kovan: ETHERSCAN_KEY,
+      sepolia: ETHERSCAN_KEY,
       polygon: POLYGONSCAN_KEY,
       polygonMumbai: POLYGONSCAN_KEY,
       avalanche: SNOWTRACE_KEY,
       avalancheFujiTestnet: SNOWTRACE_KEY,
       optimisticEthereum: OPT_ETHERSCAN_KEY,
       optimisticEthereum: OPT_ETHERSCAN_KEY,
-      // optimisticKovan: OPT_ETHERSCAN_KEY,
       arbitrumOne: ARBISCAN_KEY,
       arbitrumGoerli: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
@@ -164,11 +161,11 @@ module.exports = {
       url: GOERLI_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Rinkeby testnet config
-    // rinkeby: {
-    //   url: RINKEBY_URL,
-    //   accounts: [PRIVATE_KEY],
-    // },
+    // Sepolia testnet config
+    sepolia: {
+      url: SEPOLIA_URL,
+      accounts: [PRIVATE_KEY],
+    },
     // // Kovan testnet config
     // kovan: {
     //   url: KOVAN_URL,
