@@ -149,7 +149,7 @@ npx hardhat votes_token \
 ```
 #### Timelock contract deployment
 
-You can find the timelock contract code here: [TimeLock.sol](contracts/OpenZepellin/TimelockController.sol)
+You can find the timelock contract code here: [TimelockControllerOZ.sol](contracts/OpenZepellin/TimelockControllerOZ.sol)
 
 ```bash
 npx hardhat oz_timelock \
@@ -162,7 +162,7 @@ npx hardhat oz_timelock \
 
 #### Governance contract deployment
 
-You can find the timelock contract code here: [TimeLock.sol](contracts/OpenZepellin/TimelockController.sol)
+You can find the timelock contract code here: [OZGovernor.sol](contracts/OpenZepellin/OZGovernor.sol)
 
 ```bash
 npx hardhat oz_governance \
