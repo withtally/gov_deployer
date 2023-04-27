@@ -55,6 +55,8 @@ const BINANCE_URL = process.env.BINANCE_URL
 const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
 // Gnosis netowork nodes
 const GNOSIS_URL = process.env.GNOSIS_URL
+// Base network nodes
+const BASE_GOR_URL = process.env.BASE_GOR_URL
 
 // Etherscan key
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
@@ -64,6 +66,7 @@ const OPT_ETHERSCAN_KEY = process.env.OPT_ETHERSCAN_KEY
 const ARBISCAN_KEY = process.env.ARBISCAN_KEY
 const BSCSCAN_KEY = process.env.BSCSCAN_KEY
 const GNOSISSCAN_KEY = process.env.GNOSISSCAN_KEY
+const BASESCAN_KEY = process.env.BASESCAN_KEY
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -133,6 +136,14 @@ module.exports = {
       {
         network: "arbitrumGoerli",
         chainId: 421613,
+        urls: {
+          apiURL: "https://api-goerli.arbiscan.io/api",
+          browserURL: "https://goerli.arbiscan.io"
+        }
+      },
+      {
+        network: "baseGoerli",
+        chainId: 84531,
         urls: {
           apiURL: "https://api-goerli.arbiscan.io/api",
           browserURL: "https://goerli.arbiscan.io"
