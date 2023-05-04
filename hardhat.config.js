@@ -130,7 +130,8 @@ module.exports = {
       arbitrumGoerli: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
-      xdai: GNOSISSCAN_KEY
+      xdai: GNOSISSCAN_KEY,
+      baseGoerli: BASESCAN_KEY
     },
     customChains: [
       {
@@ -250,6 +251,11 @@ module.exports = {
     // Gnosis
     gnosis: {
       url: GNOSIS_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // BAse
+    baseGoerli:{
+      url: BASE_GOR_URL,
       accounts: [PRIVATE_KEY],
     }
   }
