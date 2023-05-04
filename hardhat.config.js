@@ -131,7 +131,8 @@ module.exports = {
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
       xdai: GNOSISSCAN_KEY,
-      baseGoerli: BASESCAN_KEY
+      baseGoerli: BASESCAN_KEY,
+      'base-goerli': BASESCAN_KEY
     },
     customChains: [
       {
@@ -144,6 +145,14 @@ module.exports = {
       },
       {
         network: "baseGoerli",
+        chainId: 84531,
+        urls: {
+          apiURL: "https://api-goerli.arbiscan.io/api",
+          browserURL: "https://goerli.arbiscan.io"
+        }
+      },
+      {
+        network: "base-goerli",
         chainId: 84531,
         urls: {
           apiURL: "https://api-goerli.arbiscan.io/api",
@@ -255,6 +264,10 @@ module.exports = {
     },
     // BAse
     baseGoerli:{
+      url: BASE_GOR_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    "base-goerli":{
       url: BASE_GOR_URL,
       accounts: [PRIVATE_KEY],
     }
