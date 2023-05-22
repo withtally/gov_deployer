@@ -135,7 +135,7 @@ module.exports = {
       xdai: GNOSISSCAN_KEY,
       baseGoerli: BASESCAN_KEY,
       'base-goerli': BASESCAN_KEY,
-      "scroll-alpha": "",
+      "scroll-alpha": "EMPTY",
     },
     customChains: [
       {
