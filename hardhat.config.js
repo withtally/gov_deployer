@@ -57,6 +57,8 @@ const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
 const GNOSIS_URL = process.env.GNOSIS_URL
 // Base network nodes
 const BASE_GOR_URL = process.env.BASE_GOR_URL
+// Scroll network nodes
+const SCR_ALPHA_URL = process.env.SCR_ALPHA_URL
 
 // Etherscan key
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
@@ -132,7 +134,8 @@ module.exports = {
       bscTestnet: BSCSCAN_KEY,
       xdai: GNOSISSCAN_KEY,
       baseGoerli: BASESCAN_KEY,
-      'base-goerli': BASESCAN_KEY
+      'base-goerli': BASESCAN_KEY,
+      "scroll-alpha": "",
     },
     customChains: [
       {
@@ -157,6 +160,14 @@ module.exports = {
         urls: {
           apiURL: "https://api-goerli.arbiscan.io/api",
           browserURL: "https://goerli.arbiscan.io"
+        }
+      },
+      {
+        network: "scroll-alpha",
+        chainId: 534353,
+        urls: {
+          apiURL: "https://blockscout.scroll.io/api",
+          browserURL: "https://blockscout.scroll.io/"
         }
       }
     ]
@@ -269,6 +280,10 @@ module.exports = {
     },
     "base-goerli":{
       url: BASE_GOR_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    "scroll-alpha":{
+      url: SCR_ALPHA_URL,
       accounts: [PRIVATE_KEY],
     }
   }
