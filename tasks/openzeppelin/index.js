@@ -6,6 +6,7 @@ const Contracts = require('./deploy_oz_contracts.js');
 const Timelock = require('./deploy_timelock_oz.js');
 const Governance = require('./deploy_gov.js');
 const AllContracts = require('./deploy_oz_contracts.js')
+const Mint = require('./mint_erc20_for.js')
 
 module.exports = {
     ERC20,
@@ -15,5 +16,6 @@ module.exports = {
     Timelock,
     Contracts,
     Governance,
+    Mint,
     AllContracts
 }

@@ -38,6 +38,30 @@ const erc20 = async (
 }
 
 /**
+ * Create a call to a contract, receiving contract address to mint the token for an address.
+ */
+const mint = async (
+    token_address,
+    to,
+    amount,
+    signer
+) => {
+    // We get the contract to deploy
+    const TokenERC20 = await hre.ethers.getContractFactory("TokenERC20VotesMintable");
+
+    const contract = await TokenERC20.attach(token_address);
+    const contractWithSigner = contract.connect(signer);
+
+    // decimals
+    const decimals = await contractWithSigner.decimals();
+    amount = ethers.utils.parseUnits(amount, decimals); 
+
+    const result = await contractWithSigner.mint(to, amount);
+    return result
+}
+
+
+/**
  * erc20Votes  will deploy the ERC20 token contract from openzeppelin with votes and mintable packages.
  * You have to pass the ownership to the DAO contract.
  * 
@@ -201,5 +225,6 @@ module.exports = {
     erc721votes,
     erc20Wrapper,
     ozGovernor,
-    timelockController
+    timelockController,
+    mint
 }
