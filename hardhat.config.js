@@ -48,8 +48,10 @@ const OPTIMISM_URL = process.env.OPTIMISM_URL
 const OPT_GOERLI_URL = process.env.OPT_GOERLI_URL
 // Arbitrum network nodes
 const ARBITRUM_URL = process.env.ARBITRUM_URL
-// const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
+const ARBITRUM_NOVA_URL = process.env.ARBITRUM_NOVA_URL
 const ARBITRUM_GOR_URL = process.env.ARBITRUM_GOR_URL
+// const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
+
 // Binance network nodes
 const BINANCE_URL = process.env.BINANCE_URL
 const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
@@ -130,6 +132,7 @@ module.exports = {
       optimisticEthereum: OPT_ETHERSCAN_KEY,
       arbitrumOne: ARBISCAN_KEY,
       arbitrumGoerli: ARBISCAN_KEY,
+      arbitrumNova: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
       xdai: GNOSISSCAN_KEY,
@@ -247,16 +250,21 @@ module.exports = {
       url: ARBITRUM_URL,
       accounts: [PRIVATE_KEY],
     },
-    // Arbitrum Rinkeby testnet config
-    // arbitrum_rinkeby: {
-    //   url: ARBITRUM_RIN_URL,
-    //   accounts: [PRIVATE_KEY],
-    // },
+    arbitrumNova: {
+      url: ARBITRUM_NOVA_URL,
+      accounts: [PRIVATE_KEY],
+    },
+
     // Arbitrum Goerli testnet config
     arbitrum_goerli: {
       url: ARBITRUM_GOR_URL,
       accounts: [PRIVATE_KEY],
     },
+        // Arbitrum Rinkeby testnet config
+    // arbitrum_rinkeby: {
+    //   url: ARBITRUM_RIN_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
     // Binance - networks
     // Binance mainnet config
     binance: {
