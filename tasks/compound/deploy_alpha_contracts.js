@@ -126,5 +126,6 @@ task('alpha_dao', "Deploys all contracts, to have an Alpha Governance DAO.")
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nGovernance contract deployed at: ${gov.address} - ${hre.network.name} - ${govBlock.number}\n${verify_str_governance}\n\n`);
+        fs.appendFileSync('contracts.out', `\n \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n\n`);
 
     });

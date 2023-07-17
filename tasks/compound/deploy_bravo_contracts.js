@@ -161,5 +161,6 @@ task('bravo_dao', "Deploys all contracts, to have a Bravo Governance DAO. This w
 
         // save it to a file to make sure the user doesn't lose it.
         fs.appendFileSync('contracts.out', `${new Date()}\nDelegator contract deployed at: ${del.address} - ${hre.network.name} - ${delBlock.number}\n${verify_str_delegator}\n\n`);
-        
+        fs.appendFileSync('contracts.out', `\n \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n\n`);
+
     });
