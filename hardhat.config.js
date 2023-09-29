@@ -52,6 +52,11 @@ const ARBITRUM_NOVA_URL = process.env.ARBITRUM_NOVA_URL
 const ARBITRUM_GOR_URL = process.env.ARBITRUM_GOR_URL
 // const ARBITRUM_RIN_URL = process.env.ARBITRUM_RIN_URL
 
+
+const ZKSYNC_URL = process.env.ZKSYNC_URL
+const ZKEVM_URL = process.env.ZKEVM_URL
+
+
 // Binance network nodes
 const BINANCE_URL = process.env.BINANCE_URL
 const BINANCE_TESTNET_URL = process.env.BINANCE_TESTNET_URL
@@ -71,6 +76,7 @@ const ARBISCAN_KEY = process.env.ARBISCAN_KEY
 const BSCSCAN_KEY = process.env.BSCSCAN_KEY
 const GNOSISSCAN_KEY = process.env.GNOSISSCAN_KEY
 const BASESCAN_KEY = process.env.BASESCAN_KEY
+const ZKEVM_POLYGONSCAN_KEY = process.env.ZKEVM_POLYGONSCAN_KEY
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -132,13 +138,14 @@ module.exports = {
       optimisticEthereum: OPT_ETHERSCAN_KEY,
       arbitrumOne: ARBISCAN_KEY,
       arbitrumGoerli: ARBISCAN_KEY,
-      arbitrumNova: ARBISCAN_KEY,
+      // arbitrumNova: ARBISCAN_KEY,
       bsc: BSCSCAN_KEY,
       bscTestnet: BSCSCAN_KEY,
       xdai: GNOSISSCAN_KEY,
       baseGoerli: BASESCAN_KEY,
       'base-goerli': BASESCAN_KEY,
       "scroll-alpha": "EMPTY",
+      zkevm: ZKEVM_POLYGONSCAN_KEY,
     },
     customChains: [
       {
@@ -163,6 +170,14 @@ module.exports = {
         urls: {
           apiURL: "https://api-goerli.arbiscan.io/api",
           browserURL: "https://goerli.arbiscan.io"
+        }
+      },
+      {
+        network: "zkevm",
+        chainId: 1101,
+        urls: {
+          apiURL:"https://api-zkevm.polygonscan.com/api",
+          browserURL: "https://zkevm.polygonscan.com"
         }
       },
       {
@@ -292,6 +307,16 @@ module.exports = {
     },
     "scroll-alpha":{
       url: SCR_ALPHA_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // ZKSYNC 
+    zksync: {
+      url: ZKSYNC_URL,
+      accounts: [PRIVATE_KEY],
+    },
+    // Polygon ZkEVM
+    zkevm: {
+      url: ZKEVM_URL,
       accounts: [PRIVATE_KEY],
     }
   }

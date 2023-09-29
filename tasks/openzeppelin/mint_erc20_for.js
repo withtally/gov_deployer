@@ -28,14 +28,22 @@ task('mint_oz_erc20', "Deploys a Open Zepellin governance contract. You have to 
         console.log("token_address:\x1B[36m", token_address, "\x1B[37m\n");
 
         //  MINT
-        const receipt = await mint(
+        let receipt = await mint(
             token_address,
             to,
             amount,
             signer
         )
         
-        console.log(receipt)
+        receipt = await receipt.wait()
+
+        // Check the status of the transaction
+        if (receipt.status === 1) {
+            console.log("Transaction successful!");
+            console.log("Transaction hash:", receipt.transactionHash);
+        } else {
+            console.error("Transaction failed!");
+        }
 
         // const lb = await hre.ethers.provider.getBlock("latest")
 
