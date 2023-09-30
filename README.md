@@ -3,14 +3,14 @@ DAO Contracts Deployer
 ======================
 A tool to deploy governance and related contracts supported by Tally via CLI. 
 
-All the contracts disclosed here are opinated versions of it and you can always redesign and modified if they stick to the overall pattern.
+All the contracts disclosed here are opinionated versions of it and you can always redesign and modify if they stick to the overall pattern.
 
 ----------------
 # Gov Deployer
 ## About
 
 Gov deployer is dev tool created by developers in tally, in special [Arthur](github.com/afa7789).
-It's main purpose is to deploy the contracts that tally support in their products with a single line of command.
+Its main purpose is to deploy the contracts that tally support in their products with a single line of command.
 
 To skip reading too much and go directly to the commands [click here](#deployments) and to go to the [table of content click here](#table-of-content).
 
@@ -18,11 +18,11 @@ To skip reading too much and go directly to the commands [click here](#deploymen
 
 Are you still unsure on what governance to use, let's us help you!
 
-The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZepellin governance contract. Tally recommends you to use Openzeppelin contract, because it will be the one with more support and less chance of being deprecated, and it is too the contracts with more longevity, maintenance and support as well as have more functionalities and features in Tally. 
+The more usual governances are Alpha and Bravo, from the compound governance, we could say that they created the initial pattern and following it we have OpenZeppelin governance contract. Tally recommends you to use Openzeppelin contract, because it will be the one with more support and less chance of being deprecated, and it is too the contracts with more longevity, maintenance and support as well as have more functionalities and features in Tally. 
 
-Look up this comparison chart bellow, to see which one is the best for you.
+Look up this comparison chart below, to see which one is the best for you.
 
-| α Governor Alpha                                                          	| β Governor Bravo                                                        	| ℥ Governor OpenZepellin                                                 	|
+| α Governor Alpha                                                          	| β Governor Bravo                                                        	| ℥ Governor OpenZeppelin                                                 	|
 |---------------------------------------------------------------------------	|-------------------------------------------------------------------------	|-------------------------------------------------------------------------	|
 | 🛑 Non-upgradable contract.                                                	| 🛠️ Built in upgradability.                                               	| 🧰 Built in upgradability and more customization.                        	|
 | 🔀 Parameter changes require contract migration.                           	| 🔁 Parameter changes uses static contract address, no migrations needed. 	| 🔁 Parameter changes uses static contract address, no migrations needed. 	|
@@ -129,7 +129,7 @@ with optional parameters:
     # vdelay is 100 blocks
     # period is 45818 blocks
     # fraction is 60
-    # threshold is 100 ( I recommend putting a threshold in accord to your bussiness)
+    # threshold is 100 ( I recommend putting a threshold in accord to your business)
 ```
 
 Deploy the following contracts:
@@ -187,7 +187,7 @@ npx hardhat oz_governance \
 # delay is 100 blocks
 # period is 45818 blocks
 # fraction is 60
-# threshold is 100 ( I recommend putting a threshold in accord to your bussiness)
+# threshold is 100 ( I recommend putting a threshold in accord to your business)
 ```
 
 ---------------------------------
@@ -252,7 +252,7 @@ npx hardhat alpha_governance \
 ------------------------------------
 ### Bravo Deployment
 
-Deploy in a single command all the contracts needed to create an Bravo Compound style governance.
+Deploy in a single command all the contracts needed to create a Bravo Compound style governance.
 
 To deploy bravo you need to deploy __1st the token__, __2nd the timelock__, __3rd the delegate__ and __4th delegator__. Delegator is the main governance contract and delegate is the governance contract used as a proxy to the delegator.
 
@@ -276,7 +276,7 @@ Bravo governance delegate is the logic for the governance contract. It is used b
 
 You can find the dao contract code here: [BravoGovernorDelegate.sol](contracts/Compound/BravoGovernorDelegate.sol)
 
-The delegate contract is changed to not block Bravo DAO's which does not have an previous Alpha.
+The delegate contract is changed to not block Bravo DAO's which does not have a previous Alpha.
 
 ```bash
 npx hardhat bravo_delegate \
@@ -300,7 +300,7 @@ npx hardhat bravo_delegator \
 ------------------------------------
 
 __Future planning:__
-- Add a pluggin usage to add it to the Tally website.
+- Add a plugin usage to add it to the Tally website.
 
 ----------------------
 
