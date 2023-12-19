@@ -1,4 +1,4 @@
-This REPO is the old version of the deployer, for the newer use please go to [github.com/withtally/gov-deployer](github.com/withtally/gov-deployer)
+This REPO is the old version of the deployer, to use the newer one, please go to [github.com/withtally/gov-deployer](github.com/withtally/gov-deployer)
 
 ![Theme image for repository](resources/banner.png)
 DAO Contracts Deployer
